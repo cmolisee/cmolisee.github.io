@@ -137,7 +137,9 @@ su <username>
 
 ## Additional Setup and Install of OMV
 
-Unpack and install the sata hat hardware - you can use this [documentation][satahatinstall] with pictures if you like.
+Unpack and install the sata hat hardware. This [documentation][satahatinstall] with pictures helps you install things properly and covers all the next steps in this post.
+
+
 
 <!-- Links -->
 [pi5]: https://www.amazon.com/Raspberry-Pi-8GB-SC1112-Quad-core/dp/B0CK2FCG1K/ref=pd_ci_mcx_pspc_dp_2_t_2
