@@ -120,9 +120,9 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: "cmolisee/cmolisee.github.io"
-    repo_id: "1019107832"
+    repo_id: "R_kgDOPL5Z-A"
     category: "General"
-    category_id: "General"
+    category_id: "DIC_kwDOPL5Z-M4CtJqR"
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
