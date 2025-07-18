@@ -17,23 +17,23 @@ At the end of the day my primary motivations are budget and fun so here we go.
 
 ## Hardware
 
-| Name                                     | Link                 | Approx cost |
-| ---------------------------------------- | -------------------- | ----------- |
-| 8GB Raspberry Pi 5                       | [Amazon][pi5]        | $90         |
-| 5V Power Adapter                         | [Amazon][5vAdapter]  | $13         |
-| Active Cooler Heatsink                   | [Amazon][heatsink]   | $10         |
-| <sup>1</sup>32GB MicroSD                 | [Amazon][microsd]    | $7          |
-| <sup>2</sup>Radxa Penta Sata Hat         | [Amazon][satahat]    | $80         |
-| 4x 1TB SSD                               | [Amazon][ssd]        | 4x $50      |
-| 4 Pack Female-Male Sata Cable (Optional) | [Amazon][satacables] | $10         |
-| 20x4 LCD Module (Optional)               | [Amazon][lcdmodule]  | $10         |
+| Name                                     | Link                   | Approx cost |
+| ---------------------------------------- | ---------------------- | ----------- |
+| 8GB Raspberry Pi 5                       | [Amazon][pi5]          | $90         |
+| 5V Power Adapter                         | [Amazon][5vAdapter]    | $13         |
+| 12V 3A Power Adapter                     | [Amazon][12v3aAdapter] | $10         |
+| Active Cooler Heatsink                   | [Amazon][heatsink]     | $10         |
+| <sup>1</sup>32GB MicroSD                 | [Amazon][microsd]      | $7          |
+| <sup>2</sup>Radxa Penta Sata Hat         | [Amazon][satahat]      | $80         |
+| 4x 1TB SSD                               | [Amazon][ssd]          | 4x $50      |
+| 4 Pack Female-Male Sata Cable (Optional) | [Amazon][satacables]   | $10         |
 
 > *<sup>1</sup>You may need to purchase an additional adapter so that you can flash the microsd from a usb port.*
 > 
 > *<sup>2</sup>Make sure you buy from the official Radxa vendor or go through Radxa. Otherwise you will need to also purchase additional cables, screws, and other hardware.*
 {: .prompt-info }
 
-> *The Heatsink and Sata Hat don't fit because the 12V DC connector. It is easiest to just take a pair of pliers and remove the fins of the heatsink that block it. Alternatively, you can get extra spacers for the hat; however, this will require some kind of extension cable for the 40 pin connector.*
+> *The Heatsink and Sata Hat don't fit because the 12V DC connector. It is easiest to just take a pair of pliers and remove the last 3 fins of the heatsink that block it. Alternatively, you can get extra spacers for the hat but this will require some kind of extension cable for the 40 pin GPIO connector.*
 {: .prompt-warning }
 
 ## Selecting the Operating System and NAS Software
@@ -87,7 +87,10 @@ So we have 4 SSD's which covers `DRIVE` and the 8GB pi 5 covers the rest of the 
 
 You can now open and edit the files on the MicroSD you just flashed. The `/DietPi.txt` file contains configurations that you can alter before installation and first boot. There is plenty of forums and documentation with details on the ohher files. It is not required to edit any of them for this setup.
 
-**Step 4:** If you haven't already unboxed all the goodies, do it now you psycho. Connect the heatsink to your RaspberryPi - it's easier to connect the cable and then punch down the heatsink, insert the MicroSD, plug in the 5v adapter to the wall and the pi, connect your ethernet cable into the RJ45 port, and finally turn it on!
+**Step 4:** If you haven't already unboxed all the goodies, you are a psycho and should do it now. <sup>1</sup>Connect the heatsink to your RaspberryPi - it's easier to connect the cable and then punch down the heatsink, insert the MicroSD, plug in the 5v adapter to the wall and the pi, connect your ethernet cable into the RJ45 port, and finally turn it on!
+
+> *<sup>1</sup>Do not forget to remove the last 3 fins from the heatsink so the sata hat can fit. Otherwise, make sure you are prepared with additional spacers and an extender for the 40 pin GPIO.*
+{: .prompt-info }
 
 **Step 5:** Find the IP address by logging into your router or using one of the many open source IP scanning tools in the market. It will likely have a hostname of 'DietPi' because there are some nifty little scripts that run as soon as you turn on the pi.
 
@@ -140,7 +143,10 @@ su <username>
 
 Unpack and install the sata hat hardware. This [documentation][satahatinstall] contains useful step-by-step with pictures to help put together the hardware and some additional guidance for setting up and benchmarking the connected SSD's. We will be following this pretty closely.
 
-**Step 1:** Connect the hardware. Carefully connect the PCIe ribbon cable, screw in the columns, connect the hat on top while paying attention to the 40pin connector and secure to the columns. You can use the hardware to fasten your SSDs together or leave them apart. If you got the SATA Male-Female cables you can hook those up or connect the SSDs straight to the sata ports on the hat.
+**Step 1:** Connect the hardware. Carefully connect the PCIe ribbon cable, screw in the columns, connect the hat on top while paying attention to the 40pin connector and secure top screws of the spacer columns. You can use the hardware to fasten your SSDs together or leave them apart. If you got the SATA Male-Female cables you can hook those up or connect the SSDs straight to the sata ports on the hat.
+
+> *At this point you will want to swap out the 5V power supply on the pi5 for the 12V power supply connected to the SATA hat.*
+{: .prompt-info }
 
 **Step 2:** We've already installed DietPi so now we need to just boot up the system and SSH in. Once in we need to configure the PCIe port:
 
@@ -155,12 +161,12 @@ _BONUS: At the end of the documentation linked above you can find some cool sche
 <!-- Links -->
 [pi5]: https://www.amazon.com/Raspberry-Pi-8GB-SC1112-Quad-core/dp/B0CK2FCG1K/ref=pd_ci_mcx_pspc_dp_2_t_2
 [5vAdapter]: https://www.amazon.com/dp/B0CQ2DL2RW/ref=sspa_dk_detail_1
+[12v3aAdapter]: https://www.amazon.com/Arkare-100V-240V-Security-Microphone-Receiver/dp/B0B51R6R2Y/ref=sr_1_1_sspa
 [heatsink]: https://www.amazon.com/Raspberry-Pi-Active-Cooler/dp/B0CLXZBR5P?ref_=ast_sto_dp
 [microsd]: https://www.amazon.com/PNY-Elite-microSDHC-Memory-P-SDU32GU185GW-GE/dp/B07R8GVGN9/ref=sr_1_3
 [satahat]: https://www.amazon.com/Radxa-Penta-SATA-HAT-Raspberry/dp/B0DX1HQWB2/ref=sr_1_2
 [ssd]: https://www.amazon.com/PNY-CS900-Internal-Solid-State/dp/B07Y5VDNT9/ref=sr_1_1_sspa
 [satacables]: https://www.amazon.com/Longdex-Female-Power-Combo-Extension/dp/B084Q8L6GK
-[lcdmodule]: https://www.amazon.com/GeeekPi-Interface-Adapter-Backlight-Raspberry/dp/B07QLRD3TM
 
 [dietpihome]: https://dietpi.com/
 [dietPiInstallGuide]: https://dietpi.com/docs/install/
