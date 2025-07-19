@@ -4,8 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-# About Me
-
 Hi I'm Cody - a lead software engineer and manager who enjoys coffee, programming, and occasionally creating something that works.
 
 # What I Do
