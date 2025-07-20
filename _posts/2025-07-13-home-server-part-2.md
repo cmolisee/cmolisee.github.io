@@ -1,5 +1,5 @@
 ---
-title: "Home Server: DIY Raspberry Pi 5 NAS"
+title: "Home Server: DIY Pi5 NAS - Part 1"
 date: 2025-07-13 13:07:00 -0700
 categories: [Home Server, Raspberry Pi]
 tags: [homeserver, raspberrypi,nas, dietpi, omv]     # TAG names should always be lowercase
@@ -38,11 +38,16 @@ At the end of the day my primary motivations are budget and fun so here we go.
 
 ## Selecting the Operating System and NAS Software
 
-I work with this guy - Juan. He is great and in his greatness told me about this cool minimized Raspberry Pi OS called DietPi. There site is pretty cool ([DietPi][dietpihome]) and it has mostly all the information you need for this. Before we get too far along, as with any well executed project, we need to do a little research and make sure we know what to expect. 
+I work with this guy - Juan. He is great and, in his greatness, educated me about DietPi - a minimzed OS for Raspberry Pi. There site is pretty cool ([DietPi][dietpihome]) and it has some good information to get started. But before progressing too far, as with any well executed project, we need to do some research and planning. 
 
-After spending some time researching all the different open source NAS softwares in the market like trueNAS, Rockstar, OMV, even just straight up proxmox with ZFS; I ultimately went with OMV as it seemed to highlight features that vibed with me the best - not too complex, still feature rich, well documented, etc.... Finally, we can compare requirements, hardware, and services to determine if there are any gaps or concerns in our plan.
+After skimming through several articles, forms, and official documentation pages I found there are several options for managing NAS:
 
-Looking at OMV ([Open Media Vault][omvPrerequisites]), it is a quick skim of the install guide to find requirements:
+1. Manually configure the drives and setup a file share services like SAMBA.
+2. Use an open source software like trueNAS, Rockstar, OMV or similar.
+
+I decided to go with Open Media Vault (OMV) as it seemed to bridge the gap between simplicity and complexity. Knowing now what we will use we can diagram and tabularize some useful data.
+
+Starting with OMV ([Open Media Vault][omvPrerequisites]):
 
 | Item  | supported      | Minimal | Best     | Recommendation                                |
 | ----- | -------------- | ------- | -------- | --------------------------------------------- |
@@ -75,6 +80,14 @@ Looking at OMV ([Open Media Vault][omvPrerequisites]), it is a quick skim of the
 
 <sup><em>**Content from this table is from [OMV][omvPrerequisites]</em></sup>
 
+Having gathered information on hardware and software requirements we need to take inventory of what we have and then observe reality and risk:
+
+* we have 2 SSD's covering `DRIVE` hardware requirements.
+* We have an 8GB Pi5 coverign the other hardware requirements.
+* _dropbear_ via DietPi seems to conflict with `SSH Server` requirements for OMV.
+* _ifupdown_ also potentially clashes with `Network Man` services in OMV.
+
++
 So we have 4 SSD's which covers `DRIVE` and the 8GB pi 5 covers the rest of the hardware requirements. We have also identified a possible conflict with the `SSH Server` and `Network Man` services. There are some older forums that indicate that *Dropbear* and *SSH* are an issue but there is no indication on any recent documentation that it still is. Considering we will need the SSH Service to do a headless install of DietPi (because who owns a microHDMI anything anymore) and to install OMV - we are just going to let it ride and see how wrong or right we are later.
 
 ## Installing DietPi
