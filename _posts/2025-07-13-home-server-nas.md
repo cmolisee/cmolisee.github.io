@@ -298,7 +298,7 @@ Go to the User Settings top-right > select Dashboard > check any boxes you want.
 
 Go to Storage > Disks > For each disk click on it and then select the eraser icon in the top-left > Choose quick (Secure will take 500 years).
 
-### Setup RAID 10
+<!-- ### Setup RAID 10
 
 I decied to go with RAID 10 for the best combination of safety and performance. To start you need to install `mdadm`:
 
@@ -317,6 +317,90 @@ sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sd[a-d]
 
 This will take some time. You can run `sudo watch -n 1 -d cat /proc/mdstat` to see real time progress on the creation of the array.
 
+Next we have to format and mount the RAID array. We do this by first creating a folder:
+
+```bash
+sudo mkdir -p /mnt/raid10
+```
+
+Next we format the array. I am formatting with EXT4 but there is also ZFS and btrfs.
+
+```bash
+sudo mkfs.ext4 /dev/md0
+```
+
+Lastly we mount, verify.
+
+```bash
+sudo mount /dev/md0 /mnt/raid10
+```
+
+```bash
+df -h /mnt/raid10
+```
+
+### Auto Mount on Boot
+
+We want to ensure that the array is mounted every time we boot. We can do this by adding the raid entry to the `/etc/fstab` file.
+
+Get the RAID array details using `mdadm`.
+
+```bash
+sudo blkid | grep '/dev/md0'
+```
+
+Create a backup of the fstab file for safety.
+
+```bash
+sudo cp /etc/fstab /etc/fstab.backup
+```
+
+Open the file to edit with `sudo nano /etc/fstab` and add the following:
+
+```bash
+<raid_array_uuid|/dev/md0> /mnt/raid10 ext4 defaults,noatime,nofail 0 0
+```
+
+> `defaults,noatime,nofail` are mount options where `defaults` is basic parameters, `noatime` disables access time updates to improve performance, and `nofail` says to boot system even if RAID is not available.
+{: .prompt-info }
+
+Reload the `systemd` manager to see the changes. If you try to run `findmnt --verify` before this it should tell you there are changes to fstab but you have to reload the daemon first.
+
+```bash
+sudo systemctl daemon-reload && sudo findmnt --verify
+```
+
+Reboot the Pi to ensure the changes are fully configured.
+
+```bash
+sudo shutdown -r now
+```
+
+Verify that `/dev/md0` is mounted after signing back in.
+
+```bash
+df -h
+```
+
+### Integrate with OMV
+
+Now we can finally sign back into our OMV WebGUI to configure the RAID 10 setup. 
+
+### Install Plugins
+
+Go to System > Plugins and search for `MD`. You should see the `openmediavault-md` plugin listed with description similar to:
+
+> openmediavault Linux MD (Multiple Device) plugin
+
+Select it and install. The WebGUI should reload.
+
+### Verify RAID 10
+
+Go to Storage > Multiple Device and verify that `/dev/md0` is a listed device. 
+
+### Add Shared Folder
+
+Now we want to add a shared folder within OMV that points ot hte mount point of our RAID array. We will configure SMB network protocol for this share folder. -->
 
 
 
