@@ -5,15 +5,13 @@ categories: [Home Server, Raspberry Pi]
 tags: [homeserver, raspberrypi,nas, dietpi, omv]     # TAG names should always be lowercase
 ---
 
-Knowing that a NAS (Network-Attached Storage) is not cheap, I never intended to include it in my Home Server MVP. That is until I stumbled upon the *Radxa Penta Sata Hat*. Long story short, we are definitely adding a budget DIY NAS to our Home Server MVP.  
+Network-Attached Storage (NAS) is not cheap and I never intended to include it in my Home Server until I stumbled upon the *Radxa Penta Sata Hat*. Long story short, this looks like fun and lower budget so lets give it a try.
 
-Before we get started I have to say I also discovered the quad NVME M.2 hats via GeeekPi but ultimately decided to go with the SATA hat for the following reasons:
-
-  - NVME is more expensive.
-  - NVME uses more energy and therefore more heat.
-  - I am not convinced that the performance gains will end up outweighing the cost.
-
-At the end of the day my primary motivations are budget and fun so here we go.
+> I did see other options like quad NVME M.2 hats via GeeekPi but decided to stick with the sata hat:
+> * NVME is more expensive.
+> * NVME uses more resources.
+> * I am not convinced the performance will outweigh the cost.
+{: .prompt-tip }
 
 ## Hardware
 
@@ -28,26 +26,31 @@ At the end of the day my primary motivations are budget and fun so here we go.
 | 4x 1TB SSD                               | [Amazon][ssd]          | 4x $50      |
 | 4 Pack Female-Male Sata Cable (Optional) | [Amazon][satacables]   | $10         |
 
-> *<sup>1</sup>You may need to purchase an additional adapter so that you can flash the microsd from a usb port.*
+> *<sup>1</sup>You may need to purchase an additional adapter so that you can flash the MicroSD from a usb port.*
 > 
 > *<sup>2</sup>Make sure you buy from the official Radxa vendor or go through Radxa. Otherwise you will need to also purchase additional cables, screws, and other hardware.*
 {: .prompt-info }
 
-> *The Heatsink and Sata Hat don't fit because the 12V DC connector. It is easiest to just take a pair of pliers and remove the last 3 fins of the heatsink that block it. Alternatively, you can get extra spacers for the hat but this will require some kind of extension cable for the 40 pin GPIO connector.*
+> *The Heatsink and Sata Hat don't fit because the 12V DC connector. Simplest solution is to remove the last 3 fins with pliers. Alternatively, you can get extra spacers and some kind of 40 pin GPIO extension cable.*
 {: .prompt-warning }
 
 ## Selecting the Operating System and NAS Software
 
-I work with this guy - Juan. He is great and, in his greatness, educated me about DietPi - a minimzed OS for Raspberry Pi. There site is pretty cool ([DietPi][dietpihome]) and it has some good information to get started. But before progressing too far, as with any well executed project, we need to do some research and planning. 
+There are many options for an OS on the Raspberry Pi. I chose DietPi because of this guy Juan told me about it and he knows things. Their site and github are pretty informative and there is quite a bit of documentation and troubleshooting help within the communicaty and forums. 
 
-After skimming through several articles, forms, and official documentation pages I found there are several options for managing NAS:
+[DietPi Website][dietpihome]
 
-1. Manually configure the drives and setup a file share services like SAMBA.
-2. Use an open source software like trueNAS, Rockstar, OMV or similar.
+The options for choosing a NAS software had a little more variety and is a little less familiar.
 
-I decided to go with Open Media Vault (OMV) as it seemed to bridge the gap between simplicity and complexity. Knowing now what we will use we can diagram and tabularize some useful data.
+* We could not use any service and manually setup and manage our NAS via tools like `mdadm` and `smb`.
+* We could get a paid software UNRAID, QNAP, SYNOLOGY, etc....
+* We could use an open source software like trueNAS, Rockstar, OMV, etc....
 
-Starting with OMV ([Open Media Vault][omvPrerequisites]):
+After some research I decided Open Media Vault (OMV) would best fit my goals. It seems to have a good balance between simplicity and complexity and there is a fairly large community behind it.
+
+## Gathering Requirements and Specs
+
+_**Content in the following tables is referenced from [OMV Prerequisites][omvPrerequisites]_
 
 | Item  | supported      | Minimal | Best     | Recommendation                                |
 | ----- | -------------- | ------- | -------- | --------------------------------------------- |
@@ -56,7 +59,6 @@ Starting with OMV ([Open Media Vault][omvPrerequisites]):
 | NIC   | WiFi/Ether/USB | any     | 10Mb NIC | 1GiB NIC or 10Gb NICs: SFP fiber              |
 | CPU   | arm,x86,x64    | 32bit   | 64bit    | Intel Dual Core, AMD Ryzen                    |
 
-<sup><em>**Content from this table is from [OMV][omvPrerequisites]</em></sup>
 
 | Item | Software        | Minimal   | Best            | Recommendation                               |
 | ---- | --------------- | --------- | --------------- | -------------------------------------------- |
@@ -66,7 +68,7 @@ Starting with OMV ([Open Media Vault][omvPrerequisites]):
 | DDS  | HDD,SSD,USB…    | 0 or any  | HHD,1 per share | One disk or part per shared resource         |
 | NET  | LAN,WAN,SAN,VPN | LAN       | SAN,PAN,LAN     | Fiber IPv4, or at least cable LAN            |
 
-<sup><em>**Content from this table is from [OMV][omvPrerequisites]</em></sup>
+<sup><em>**Additional content referenced from [DietPi Docs][dietpidocs]</em></sup>
 
 | Service Type | OMV Service  | DietPi Service                                                | Possible Conflicts                                            |
 | ------------ | ------------ | ------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -78,24 +80,22 @@ Starting with OMV ([Open Media Vault][omvPrerequisites]):
 | SMB Server   | Samba        | <span style="color:var(--prompt-danger-icon-color);">✗</span> | <span style="color:var(--prompt-danger-icon-color);">✗</span> |
 | Quota Man    | quota        | <span style="color:var(--prompt-danger-icon-color);">✗</span> | <span style="color:var(--prompt-danger-icon-color);">✗</span> |
 
-<sup><em>**Content from this table is from [OMV][omvPrerequisites]</em></sup>
 
-Having gathered information on hardware and software requirements we need to take inventory of what we have and then observe reality and risk:
+We seem to have all the hardware requirements covered from our list of parts. The table above highlights 2 possible software conflicts to be aware of:
 
-* we have 2 SSD's covering `DRIVE` hardware requirements.
-* We have an 8GB Pi5 coverign the other hardware requirements.
 * **dropbear** via DietPi seems to conflict with `SSH Server` requirements for OMV.
 * **ifupdown** also potentially clashes with `Network Man` services in OMV.
 
-After consulting the forums there does not seem to be any problems with _ifupdown_. However, _dropbear_ does seem to have some issues for some users. Unfortunately, all the chatter is a little outdated so we will proceed and I will leave little notes at the top of the following sections as needed.
+I was not able to find any issues online, official or otherwise, between `ifupdown` and `netplan.io` so we are safe there. There is going to be a small issue with the `SSH Server` services. Luckily for you, the reader, I will go through the trial and error of resolving this and share with you the solution below. For now, lets focus on first steps.
 
 ## Installing DietPi
 
 ### Step 1
 
-Download the DietPi ISO image and flash it to your MicroSD card. You can get the image from [here][dietpidownload]. I use Balena Etcher to to flash the image which can be downlaoded from [here][balenaetcher].
+Download the DietPi ISO image and flash it to your MicroSD card.
 
-Connect your MicroSD to your PC and flash away!
+* You can get the image from [here][dietpidownload].
+* I use Balena Etcher to flash the image which can be downlaoded from [here][balenaetcher].
 
 > After flashing you can explore the files. There are forums and articles that explain how you can edit some files to configure DietPi before installation (i.e. editing the `/DietPi.txt` file). I will create another post eventually that dives into this more.
 {: .prompt-tip }
@@ -108,9 +108,7 @@ Connect your MicroSD to your PC and flash away!
 
 ### Step 2
 
-By now you should have already opend up all your hardware and sufficiently admired it - if you haven't do so now. 
-
-All we have to do for installing the OS is to install the <sup>1*</sup>Heatsink, insert the MicroSD card, plug in the power cable, and connect the ethernet cable. Once you've done all that you can turn it on!
+With all your hardware unpacked and sufficiently admired - connect the <sup>1*</sup>Heatsink, insert the MicroSD card, plug in the power cable, and connect the ethernet cable. Take your time, don't break anything or hook it up backwards. Turn it on when everything is connected.
 
 > *<sup>1</sup>Do not forget to remove the last 3 fins from the heatsink - which is much easier to do before attatching it to the Pi.* 
 > 
@@ -119,18 +117,21 @@ All we have to do for installing the OS is to install the <sup>1*</sup>Heatsink,
 
 ### Step 3
 
-Using the static IP address you set earlier (<sup>1</sup>or retrieving it by logging into your router) you should be able to SSH into your Pi.
+In a previous step you should have configured a static IP. If you did not do that you can find the IP by logging into your router or by using another IP scanning tool. 
+
+> If your DHCP service does not set static IP's or it does not at least reserve IP's then you will likely have a different IP for this device every time you connect it.
+{: .prompt-warning }
+
+> If you aren't sure how to access your router you can always access it through the default gateway by going to `192.168.0.1` in your browser.
+{: .prompt-tip }
+
+With the IP address you can open a terminal and SSH into your device. You will be prompted for a password which should be `dietpi`, consult the DietPi documentation if it is not.
 
 ```bash
 ssh root@<ip>
 ```
 
-_The default passwor is `dietpi`._
-
-> If you aren't sure how to access your router you can always access it through the default gateway by going to `192.168.0.1` in your browser.
-{: .prompt-tip }
-
-> If all else fails you can try `ssh root@diepi`.
+> If all else fails you can try `ssh root@diepi` using the same default password `dietpi`.
 {: .prompt-tip }
 
 ### Step 4
@@ -298,109 +299,37 @@ Go to the User Settings top-right > select Dashboard > check any boxes you want.
 
 Go to Storage > Disks > For each disk click on it and then select the eraser icon in the top-left > Choose quick (Secure will take 500 years).
 
-<!-- ### Setup RAID 10
+### Setup RAID 10
 
-I decied to go with RAID 10 for the best combination of safety and performance. To start you need to install `mdadm`:
+There are a lot of forums and articles that say you have to manually install `mdadm` and create the array manually, blah blah.... Don't do that. With OMV 7 i think they've resolved a lot of the past issues. If you do this manually you wont be able to manage anything from the OMV WebGUI which basically defeats the entire purpose of using OMV.
+
+Instead we need to install the `MD` plugin from OMV and proceed within the OMV WebGUI. Go to System > Plugins > search for MD and you should see an entry in the list resembling `openmediavault-md` with a description containing the text `multiple devices` - install that. Once installed you should restart your system and then you should be able to see Multiple Devices under Storage. Click the plus icon in the top right to create a new RAID array using RAID 10 and select all your devices. It basically does the same thing you would've done manually except it handles the updating of the OMV database and other special files that you shouldn't be touching.
+
+> It will likely create the array at /dev/md0 unless you have other stuff.
+{: .prompt-tip }
+
+After it completes you should restart. You can then verify it exists by doing some of the following:
 
 ```bash
-sudo apt-get update && sudo apt-get install mdadm
+lsblk
+ls -la /dev/md0
+sudo mdadm --details /dev/md0
+sudo findmnt --verify
 ```
 
-Run `lsblk` to see the name of all your drives then run the following to configure RAID 10 array:
+### Create Filesystem
+
+Go to Storage > File System and you should now be able to create a file system using the RAID 10 array you created. If it doesn't show up you can try to manually refresh the database and then restart from your SSH session.
 
 ```bash
-sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sd[a-d]
-```
-
-> update `/dev/sd[a-d]` to reflect the name of your drives.
-{: .prompt-info }
-
-This will take some time. You can run `sudo watch -n 1 -d cat /proc/mdstat` to see real time progress on the creation of the array.
-
-Next we have to format and mount the RAID array. We do this by first creating a folder:
-
-```bash
-sudo mkdir -p /mnt/raid10
-```
-
-Next we format the array. I am formatting with EXT4 but there is also ZFS and btrfs.
-
-```bash
-sudo mkfs.ext4 /dev/md0
-```
-
-Lastly we mount, verify.
-
-```bash
-sudo mount /dev/md0 /mnt/raid10
-```
-
-```bash
-df -h /mnt/raid10
-```
-
-### Auto Mount on Boot
-
-We want to ensure that the array is mounted every time we boot. We can do this by adding the raid entry to the `/etc/fstab` file.
-
-Get the RAID array details using `mdadm`.
-
-```bash
-sudo blkid | grep '/dev/md0'
-```
-
-Create a backup of the fstab file for safety.
-
-```bash
-sudo cp /etc/fstab /etc/fstab.backup
-```
-
-Open the file to edit with `sudo nano /etc/fstab` and add the following:
-
-```bash
-<raid_array_uuid|/dev/md0> /mnt/raid10 ext4 defaults,noatime,nofail 0 0
-```
-
-> `defaults,noatime,nofail` are mount options where `defaults` is basic parameters, `noatime` disables access time updates to improve performance, and `nofail` says to boot system even if RAID is not available.
-{: .prompt-info }
-
-Reload the `systemd` manager to see the changes. If you try to run `findmnt --verify` before this it should tell you there are changes to fstab but you have to reload the daemon first.
-
-```bash
-sudo systemctl daemon-reload && sudo findmnt --verify
-```
-
-Reboot the Pi to ensure the changes are fully configured.
-
-```bash
+sudo omv-confdbadm populate
+sudo systemctl reload openmediavault-engined
 sudo shutdown -r now
 ```
 
-Verify that `/dev/md0` is mounted after signing back in.
-
-```bash
-df -h
-```
-
-### Integrate with OMV
-
-Now we can finally sign back into our OMV WebGUI to configure the RAID 10 setup. 
-
-### Install Plugins
-
-Go to System > Plugins and search for `MD`. You should see the `openmediavault-md` plugin listed with description similar to:
-
-> openmediavault Linux MD (Multiple Device) plugin
-
-Select it and install. The WebGUI should reload.
-
-### Verify RAID 10
-
-Go to Storage > Multiple Device and verify that `/dev/md0` is a listed device. 
-
 ### Add Shared Folder
 
-Now we want to add a shared folder within OMV that points ot hte mount point of our RAID array. We will configure SMB network protocol for this share folder. -->
+Adding a shared folder here is as simple in the WebGUI. Go to Storage > Shared Folders and add a new folder to the file system we just created.
 
 
 
@@ -414,12 +343,15 @@ Now we want to add a shared folder within OMV that points ot hte mount point of 
 [ssd]: https://www.amazon.com/PNY-CS900-Internal-Solid-State/dp/B07Y5VDNT9/ref=sr_1_1_sspa
 [satacables]: https://www.amazon.com/Longdex-Female-Power-Combo-Extension/dp/B084Q8L6GK
 
+[balenaetcher]: https://etcher.balena.io/
+
 [dietpihome]: https://dietpi.com/
+[dietpidocs]: https://dietpi.com/docs/
 [dietPiInstallGuide]: https://dietpi.com/docs/install/
 [dietpidownload]: https://dietpi.com/#downloadinfo
+
 [radxasatahat]: https://docs.radxa.com/en/accessories/penta-sata-hat
 [satahatinstall]: https://docs.radxa.com/en/accessories/penta-sata-hat/penta-for-rpi5
+
 [omvPrerequisites]: https://docs.openmediavault.org/en/stable/prerequisites.html
 [omvinstall]: https://wiki.omv-extras.org/doku.php?id=omv7:raspberry_pi_install#raspberry_pi_os_updates_and_upgrades
-
-[balenaetcher]: https://etcher.balena.io/
