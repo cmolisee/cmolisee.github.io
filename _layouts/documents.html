@@ -1,0 +1,24 @@
+---
+layout: page
+# The documentation pages.
+---
+{% include lang.html %}
+
+{% assign docs = site.pages | where: 'layout', 'documentation' | sort: 'title' %}
+{% assign grouped_docs = docs | group_by_exp: 'doc', 'doc.title | slice: 0 | upcase' %}
+
+<div class="pl-xl-3">
+  {% for group in grouped_docs %}
+    {% assign first_letter = group.name %}
+    {% assign grouping = group.items | sort: 'title' %}
+
+    <h2 class="mx-4">{{ first_letter }}</h2>
+    <ul>
+      {% for doc in grouping %}
+        <li>
+          <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</div>

@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 4
+order: 5
 ---
 
 Hi I'm Cody - a lead software engineer and manager who enjoys coffee, programming, and occasionally creating something that works.
