@@ -32,7 +32,7 @@ layout: compress
             {% endif %}
           </main>
 
-          <!-- panel -->
+          {% comment %} <!-- panel -->
           <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
             <div class="access">
               {% include_cached update-list.html lang=lang %}
@@ -44,7 +44,7 @@ layout: compress
               {% include {{ _include_path }} lang=lang %}
             {% endfor %}
           </aside>
-        </div>
+        </div> {% endcomment %}
 
         <div class="row">
           <!-- tail -->
