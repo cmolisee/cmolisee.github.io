@@ -329,9 +329,11 @@ sudo shutdown -r now
 
 ### Add Shared Folder
 
-Adding a shared folder here is as simple in the WebGUI. Go to Storage > Shared Folders and add a new folder to the file system we just created.
+Adding a shared folder here is as simple in the WebGUI. Go to Storage > Shared Folders and add a new folder to the file system we just created. Note that this folder is not actually shared until SMB is configured for it in all instances which we will cover next.
 
+## Making the Share Folder Shareable
 
+To Be Continued...
 
 <!-- Links -->
 [pi5]: https://www.amazon.com/Raspberry-Pi-8GB-SC1112-Quad-core/dp/B0CK2FCG1K/ref=pd_ci_mcx_pspc_dp_2_t_2
