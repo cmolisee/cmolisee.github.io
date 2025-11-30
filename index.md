@@ -1,6 +1,6 @@
 ---
-layout: home
-title: Home
+layout: default
+title: default
 ---
 
 # Welcome to My Site
