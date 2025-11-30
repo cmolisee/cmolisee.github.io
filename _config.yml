@@ -1,0 +1,29 @@
+# Site settings
+title: Your Site Title
+description: A minimal Jekyll site
+url: "https://username.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# GitHub Codespaces
+# Allow connections from Codespaces forwarded ports
+host: 0.0.0.0
+port: 4000
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - tools
+  - README.md
+  - .editorconfig
+  - .gitattributes
+  - .devcontainer
