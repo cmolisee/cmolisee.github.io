@@ -1,0 +1,36 @@
+<!-- 5 most recent articles -->
+{% assign MAX_SIZE = 5 %}
+{% assign all_list = '' | split: '' %}
+
+{% for post in site.posts %}
+    {% assign datetime = post.last_modified_at | default: post.date %}
+
+    {% capture elem %}
+        {{- datetime | date: "%Y%m%d%H%M%S" -}}::{{- forloop.index0 -}}
+    {% endcapture %}
+
+    {% assign all_list = all_list | push: elem %}
+{% endfor %}
+
+{% assign all_list = all_list | sort | reverse %}
+{% assign updated = '' | split: '' %}
+
+{% for entry in all_list limit: MAX_SIZE %}
+    {% assign updated = updated | push: entry %}
+{% endfor %}
+
+{% if updated.size > 0 %}
+    <section id="recently-updated">
+        <h2 class="panel-heading">{{- site.data.layout.panel.lastmod -}}</h2>
+        <ul class="">
+            {% for item in update_list %}
+                {% assign index = item | split: '::' | last | plus: 0 %}
+                {% assign post = site.posts[index] %}
+                {% assign url = post.url | relative_url %}
+                <li class="">
+                    <a href="{{ url }}">{{ post.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}

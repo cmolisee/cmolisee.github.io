@@ -1,0 +1,34 @@
+<!-- 10 most used tags -->
+{% assign MAX = 10 %}
+{% assign tag_tuple_array = '' | split: ',' %}
+
+{% for tag in site.tags %}
+    {% assign name = tag | first %}
+    {% assign size = tag | last | size %}
+    {% assign tuple =  tuple | push: name | push: size %}
+    {% assign tag_tuple_array = tag_tuple_array | push: tuple %}
+{% endfor %}
+
+{% assign sorted = tag_tuple_array | sort: 1 | reverse %}
+{% assign trending_tags = '' | split: '' %}
+
+{% for tuple in sorted limit: MAX %}
+    {% assign name = tuple[0] %}
+    {% assign size = tuple[1] %}
+    {% unless trending_tags contains name %}
+        {% assign trending_tags = trending_tags | push: name %}
+        {% break %}
+    {% endunless %}
+{% endfor %}
+
+{% if trending_tags.size > 0 %}
+  <section>
+    <h2 class="panel-heading">{{- site.data.layout.panel.trending_tags -}}</h2>
+    <div class="">
+      {% for name in trending_tags %}
+        {% assign url = name | slugify | url_encode | prepend: '/tags/' | append: '/' %}
+        <a class="post-tag btn" href="{{ url | relative_url }}">{{ name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

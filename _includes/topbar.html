@@ -1,0 +1,66 @@
+<!-- The Top Bar -->
+
+<header id="topbar" class="" aria-label="Top Bar">
+    <div class="">
+        <nav id="breadcrumb" aria-label="Breadcrumb">
+            {% assign paths = page.url | split: '/' %}
+
+            {% if paths.size == 0 or page.layout == 'home' %}
+                <span>{{ site.data.layout.tabs.home | capitalize }}</span>
+            {% else %}
+                {% for item in paths %}
+                    {% if forloop.first %}
+                        <span>
+                            <a href="{{ '/' | relative_url }}">
+                                {{- site.data.layout.tabs.home | capitalize -}}
+                            </a>
+                        </span>
+                    {% elsif forloop.last %}
+                        {% if page.collection == 'tabs' %}
+                            <span>{{ site.data.layout.tabs[item] | default: page.title }}</span>
+                        {% else %}
+                            <span>{{ page.title }}</span>
+                        {% endif %}
+                    {% elsif page.layout == 'category' or page.layout == 'tag' %}
+                        <span>
+                            <a href="{{ item | append: '/' | relative_url }}">
+                                {{- site.data.layout.tabs[item] | default: page.title -}}
+                            </a>
+                        </span>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </nav>
+
+        <button type="button" id="sidebar-toggle-mobile" class="btn btn-link" aria-label="Sidebar">
+            <i class="fas fa-bars fa-fw"></i>
+            <!-- sidebar menu toggle icon ^^^ -->
+        </button>
+
+        <div id="topbar-title">
+            {% if page.layout == 'home' %}
+                {{- site.data.layout.title | default: site.title -}}
+            {% elsif page.collection == 'tabs' or page.layout == 'page' %}
+                {%- capture tab_key -%}{{ page.url | split: '/' }}{%- endcapture -%}
+                {{- site.data.layout.tabs[tab_key] | default: page.title -}}
+            {% else %}
+                {{- site.data.layout.layout[page.layout] | default: page.layout | capitalize -}}
+            {% endif %}
+        </div>
+
+        <button type="button" id="search-toggle-mobile" class="btn btn-link" aria-label="Search">
+            <i class=""></i>
+            <!-- icon for search bar ^^^ -->
+        </button>
+
+        <search id="search" class="">
+            <i class=""></i>
+            <!-- icon for search bar ^^^ -->
+            <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off"
+                placeholder="{{ site.data.layout.search.hint | capitalize }}...">
+        </search>
+        <button type="button" class="btn btn-link" id="search-cancel">
+            {{- site.data.layout.search.cancel -}}
+        </button>
+    </div>
+</header>
