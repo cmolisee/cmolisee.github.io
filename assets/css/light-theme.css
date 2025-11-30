@@ -1,0 +1,141 @@
+/* Light Theme - Inspired by GitHub Light, Solarized Light, and Atom One Light */
+
+:root {
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #eaeef2;
+  --bg-hover: #dfe3e8;
+  --bg-active: #ced4da;
+
+  /* Text Colors */
+  --text-primary: #24292f;
+  --text-secondary: #57606a;
+  --text-tertiary: #6e7781;
+  --text-link: #0969da;
+  --text-link-hover: #0550ae;
+
+  /* Accent Colors */
+  --accent-primary: #0969da;
+  --accent-secondary: #bf3989;
+  --accent-success: #1a7f37;
+  --accent-warning: #9a6700;
+  --accent-danger: #cf222e;
+  --accent-info: #0969da;
+
+  /* Syntax Highlighting Colors */
+  --syntax-comment: #6e7781;
+  --syntax-keyword: #cf222e;
+  --syntax-string: #0a3069;
+  --syntax-function: #8250df;
+  --syntax-variable: #953800;
+  --syntax-number: #0550ae;
+  --syntax-operator: #cf222e;
+
+  /* Border Colors */
+  --border-default: #d0d7de;
+  --border-muted: #eaeef2;
+  --border-emphasis: #6e7781;
+
+  /* Shadow */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.12);
+
+  /* Code Block */
+  --code-bg: #f6f8fa;
+  --code-border: #d0d7de;
+
+  /* Selection */
+  --selection-bg: #0969da;
+  --selection-text: #ffffff;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Links */
+a {
+  color: var(--text-link);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-link-hover);
+}
+
+/* Code */
+code {
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Horizontal Rule */
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-default);
+  margin: 2em 0;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--border-emphasis);
+  padding-left: 1em;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--border-default);
+  padding: 0.75em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: var(--bg-hover);
+}

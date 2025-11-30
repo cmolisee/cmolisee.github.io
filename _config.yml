@@ -6,7 +6,7 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: null # custom styles
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
