@@ -1,0 +1,23 @@
+{% assign url = include.src %}
+
+{%- if url -%}
+{% unless url contains ':' %}
+{% assign url = include.subpath | default: '' | append: '/' | append: url %}
+
+{% if site.cdn %}
+{% assign url = site.cdn | append: '/' | append: url %}
+{% endif %}
+
+{% assign url = url | replace: '///', '/' | replace: '//', '/' | replace: ':/', '://' %}
+
+{% unless url contains '://' %}
+{% if include.absolute %}
+{% assign url = site.url | append: site.baseurl | append: url %}
+{% else %}
+{% assign url = site.baseurl | append: url %}
+{% endif %}
+{% endunless %}
+{% endunless %}
+{%- endif -%}
+
+{{- url -}}

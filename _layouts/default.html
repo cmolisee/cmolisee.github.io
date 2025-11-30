@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 
 {% if site.theme_mode %}
-    {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
+{% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
 {% endif %}
 
 <html lang="en" {{ prefer_mode }}>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta
-        name="viewport"
-        content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
-    >
-    <meta name="description" content="{{ site.description }}">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+  <meta name="description" content="{{ site.description }}">
 
-    {%- capture seo_tags -%}
-        {% seo title=false %}
-    {%- endcapture -%}
+  {%- capture seo_tags -%}
+  {% seo title=false %}
+  {%- endcapture -%}
 
-    {{ seo_tags }}
+  {{ seo_tags }}
 
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-    <!-- consider: resource hints, web font, icons, PWA?, analytics, additional metadata -->
+  {% capture favicon_path %}{{ '/assets/img/favicons' | relative_url }}{% endcapture %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ favicon_path }}/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon_path }}/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ favicon_path }}/favicon-16x16.png">
+  <link rel="manifest" href="{{ favicon_path }}/site.webmanifest">
+
+  <!-- consider: resource hints, web font, icons, PWA?, analytics, additional metadata -->
 </head>
 
 <body>
-    {% include sidbar.html %}
+  {% include sidebar.html %}
 
-    <main id="">
-        {% include topbar.html %}
-        {{ content }}
+  <main id="content">
+    <!-- topbar -->
+    {{ content }}
 
-        <!-- panel: an aside with the recently-updated section, trending tags section, related  -->
-        <!-- footer: w/copyright shit -->
-    </main>
+    <!-- panel  -->
+    <!-- bottombar -->
+  </main>
 
-    <!-- scripts here... -->
+  <!-- scripts here... -->
 </body>
 
 </html>

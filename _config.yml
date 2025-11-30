@@ -1,8 +1,8 @@
 # Site settings
-title: Your Site Title
+title: cmolisee
 tagline: A developer blog.
 description: A developer blog for developer things.
-url: "https://username.github.io"
+url: "https://cmolisee.github.io"
 baseurl: ""
 
 github:
@@ -10,7 +10,7 @@ github:
 
 social:
   name: Cody Molisee
-  email molisee.cody@gmail.com
+  email: molisee.cody@gmail.com
   links:
     - https://github.com/cmolisee
 

@@ -1,5 +1,4 @@
 #!/bin/bash
-# Test Jekyll build
 
 set -e
 

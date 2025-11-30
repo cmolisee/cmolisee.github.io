@@ -1,0 +1,155 @@
+/* default dark */
+:root {
+  /* Background Colors */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --bg-hover: #30363d;
+  --bg-active: #3d444d;
+
+  /* Text Colors */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  --text-link: #58a6ff;
+  --text-link-hover: #79c0ff;
+
+  /* Accent Colors */
+  --accent-primary: #58a6ff;
+  --accent-secondary: #f778ba;
+  --accent-success: #3fb950;
+  --accent-warning: #d29922;
+  --accent-danger: #f85149;
+  --accent-info: #79c0ff;
+
+  /* Syntax Highlighting Colors */
+  --syntax-comment: #8b949e;
+  --syntax-keyword: #ff7b72;
+  --syntax-string: #a5d6ff;
+  --syntax-function: #d2a8ff;
+  --syntax-variable: #ffa657;
+  --syntax-number: #79c0ff;
+  --syntax-operator: #ff7b72;
+
+  /* Border Colors */
+  --border-default: #30363d;
+  --border-muted: #21262d;
+  --border-emphasis: #6e7681;
+
+  /* Shadow */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Code Block */
+  --code-bg: #161b22;
+  --code-border: #30363d;
+
+  /* Selection */
+  --selection-bg: #1f6feb;
+  --selection-text: #ffffff;
+}
+
+/* Dark Theme - Inspired by GitHub Dark, Dracula, and One Dark Pro */
+html[data-theme="dark"] {
+  /* Background Colors */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --bg-hover: #30363d;
+  --bg-active: #3d444d;
+
+  /* Text Colors */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  --text-link: #58a6ff;
+  --text-link-hover: #79c0ff;
+
+  /* Accent Colors */
+  --accent-primary: #58a6ff;
+  --accent-secondary: #f778ba;
+  --accent-success: #3fb950;
+  --accent-warning: #d29922;
+  --accent-danger: #f85149;
+  --accent-info: #79c0ff;
+
+  /* Syntax Highlighting Colors */
+  --syntax-comment: #8b949e;
+  --syntax-keyword: #ff7b72;
+  --syntax-string: #a5d6ff;
+  --syntax-function: #d2a8ff;
+  --syntax-variable: #ffa657;
+  --syntax-number: #79c0ff;
+  --syntax-operator: #ff7b72;
+
+  /* Border Colors */
+  --border-default: #30363d;
+  --border-muted: #21262d;
+  --border-emphasis: #6e7681;
+
+  /* Shadow */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Code Block */
+  --code-bg: #161b22;
+  --code-border: #30363d;
+
+  /* Selection */
+  --selection-bg: #1f6feb;
+  --selection-text: #ffffff;
+}
+
+/* Light Theme - Inspired by GitHub Light, Solarized Light, and Atom One Light */
+html[data-theme="light"] {
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #eaeef2;
+  --bg-hover: #dfe3e8;
+  --bg-active: #ced4da;
+
+  /* Text Colors */
+  --text-primary: #24292f;
+  --text-secondary: #57606a;
+  --text-tertiary: #6e7781;
+  --text-link: #0969da;
+  --text-link-hover: #0550ae;
+
+  /* Accent Colors */
+  --accent-primary: #0969da;
+  --accent-secondary: #bf3989;
+  --accent-success: #1a7f37;
+  --accent-warning: #9a6700;
+  --accent-danger: #cf222e;
+  --accent-info: #0969da;
+
+  /* Syntax Highlighting Colors */
+  --syntax-comment: #6e7781;
+  --syntax-keyword: #cf222e;
+  --syntax-string: #0a3069;
+  --syntax-function: #8250df;
+  --syntax-variable: #953800;
+  --syntax-number: #0550ae;
+  --syntax-operator: #cf222e;
+
+  /* Border Colors */
+  --border-default: #d0d7de;
+  --border-muted: #eaeef2;
+  --border-emphasis: #6e7781;
+
+  /* Shadow */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.12);
+
+  /* Code Block */
+  --code-bg: #f6f8fa;
+  --code-border: #d0d7de;
+
+  /* Selection */
+  --selection-bg: #0969da;
+  --selection-text: #ffffff;
+}

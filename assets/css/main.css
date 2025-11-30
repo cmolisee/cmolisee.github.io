@@ -1,14 +1,91 @@
-/* Main Stylesheet - Imports all theme files */
-
 @import url('reset.css');
+@import url('theme.css');
 
-/* Automatically apply dark or light theme based on system preference */
-@media (prefers-color-scheme: dark) {
-  @import url('dark-theme.css');
+/* theme */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-@media (prefers-color-scheme: light) {
-  @import url('light-theme.css');
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+a {
+  color: var(--text-link);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-link-hover);
+}
+
+code {
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-default);
+  margin: 2em 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--border-emphasis);
+  padding-left: 1em;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--border-default);
+  padding: 0.75em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: var(--bg-hover);
 }
 
 /* Base Styles */
@@ -17,6 +94,7 @@ body {
   margin: 0 auto;
   padding: 2rem 1.5rem;
   font-size: 16px;
+  background: var(--bg-primary);
 }
 
 /* Typography */
@@ -61,7 +139,8 @@ p {
 }
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   margin-bottom: 1rem;
   padding-left: 2rem;
 }
@@ -70,28 +149,26 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* Layout helpers */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+/* default layout */
+main#content {
+  margin-left: 260px;
 }
 
-/* Utilities */
-.text-center {
-  text-align: center;
+/* sidebar */
+aside#sidebar {
+  padding-left: 0;
+  padding-right: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  width: 260px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-default);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
-
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
-.mb-4 { margin-bottom: 2rem; }
 
 /* Responsive */
 @media (max-width: 768px) {
