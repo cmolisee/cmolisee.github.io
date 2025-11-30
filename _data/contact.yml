@@ -1,0 +1,7 @@
+github:
+  title: "github"
+  icon: "fab fa-github"
+
+email:
+  title: "email"
+  icon: "fas fa-envelope"

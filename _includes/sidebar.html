@@ -1,0 +1,63 @@
+<asid aria-label="Sidebar" id="sidebar" class="">
+    <header class="">
+        <a href="{{ '/' | relative_url }}" id="avatar">
+            {%- if site.avatar != empty and site.avatar -%}
+                {%- capture avatar_url -%}
+                    {% include media-url.html src=site.avatar %}
+                {%- endcapture -%}
+                <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror=""this.style.display='none'">
+            {%- endif -%}
+        </a>
+
+        <a class="" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <p class="">{{ site.tagline }}</p>
+    </header>
+
+    <nav class="">
+        <ul class="">
+            <li class="">
+                <a href="{{ '/' | relative_url }}" class="">
+                    <i class=""></i>
+                    <!-- icone for Home ^^^^ -->
+                    <span>{{ site.data.layout.tabs.home | upcase }}</span>
+                </a>
+            </li>
+
+            {% for tab in site.tabs %}
+                <li class="">
+                    <a href="{{ tab.url | relative_url }}" class="">
+                        <i class=""></i>
+                        <!-- icon for each of the tabs ^^^ -->
+                        {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
+                        <span>{{ site.data.layout.tabs.[tab_name] | default: tab.title | upcase }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <div class="">
+        {% if site.data.contact.size > 0 %}
+            <span class=""></span>
+        {% endif %}
+
+        {%- capture github_url -%}
+            https://github.com/{{ site.github.username }}
+        {%- endcapture -%}
+
+        <a href="{{ github_url }}" aria-label="github" target="_blank" rel="noopener noreferrer">
+            <i class=""></i>
+            <!-- icon for github ^^^ -->
+        </a>
+
+        {% assign email = site.social.email | split: '@' %}
+        {%- capture email_url -%}
+            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+        {%- endcapture -%}
+
+        <a href="{{ email_url }}" aria-label="email" target="_blank" rel="noopener noreferrer">
+            <i class=""></i>
+            <!-- icon for email ^^^ -->
+        </a>
+    </div>
+</asid>

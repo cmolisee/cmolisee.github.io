@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% if site.theme_mode %}
+    {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
+{% endif %}
+
+<html lang="en" {{ prefer_mode }}>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ site.description }}">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta
+        name="viewport"
+        content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    >
+    <meta name="description" content="{{ site.description }}">
+
+    {%- capture seo_tags -%}
+        {% seo title=false %}
+    {%- endcapture -%}
+
+    {{ seo_tags }}
+
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+    <!-- consider: resource hints, web font, icons, PWA?, analytics, additional metadata -->
 </head>
+
 <body>
-  <header>
-    <nav>
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <p>{{ site.description }}</p>
-    </nav>
-  </header>
+    {% include sidbar.html %}
 
-  <main>
-    {{ content }}
-  </main>
+    <main id="">
+        <!-- top bar: breadcrumb and search -->
+        {{ content }}
 
-  <footer>
-    <hr>
-    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
-  </footer>
+        <!-- panel: an aside with the recently-updated section, trending tags section, related  -->
+        <!-- footer: w/copyright shit -->
+    </main>
+
+    <!-- scripts here... -->
 </body>
+
 </html>
