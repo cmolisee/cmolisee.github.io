@@ -1,4 +1,8 @@
-@import url('reset.css');
+---
+---
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('theme.css');
 
 /* theme */
@@ -155,7 +159,7 @@ main#content {
 }
 
 /* sidebar */
-aside#sidebar {
+#sidebar {
   padding-left: 0;
   padding-right: 0;
   position: fixed;
@@ -168,6 +172,17 @@ aside#sidebar {
   border-right: 1px solid var(--border-default);
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+#avatar {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+}
+
+#avatar img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Responsive */

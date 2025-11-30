@@ -25,6 +25,10 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-postcss
+
+postcss:
+  cache: false
 
 paginate: 10
 
