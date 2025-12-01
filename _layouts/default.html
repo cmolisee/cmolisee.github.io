@@ -23,7 +23,7 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}">
 
   {% capture favicon_path %}{{ '/assets/img/favicons' | relative_url }}{% endcapture %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ favicon_path }}/apple-touch-icon.png">
@@ -38,14 +38,18 @@
   {% include sidebar.html %}
 
   <main id="content">
-    <!-- topbar -->
+    {% include topbar.html %}
     {{ content }}
 
     <!-- panel  -->
     <!-- bottombar -->
   </main>
 
+  <!-- capture click/touch for mobile sidebar to close -->
+  <div id="sidebar-underlay" class="hidden fixed w-100 h-100 z-1"></div>
+
   <!-- scripts here... -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 
 </html>

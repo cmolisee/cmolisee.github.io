@@ -1,11 +1,9 @@
----
----
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url('theme.css');
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* theme */
+@import './theme.css';
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -175,14 +173,14 @@ main#content {
 }
 
 #avatar {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
 }
 
 #avatar img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Responsive */

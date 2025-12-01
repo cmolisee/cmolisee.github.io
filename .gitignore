@@ -18,3 +18,5 @@ Thumbs.db
 .idea/
 # Logs
 *.log
+# generated css
+assets/css/output.css
