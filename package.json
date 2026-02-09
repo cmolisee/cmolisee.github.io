@@ -1,0 +1,38 @@
+{
+  "name": "jekyll-theme-minimal",
+  "version": "1.0.0",
+  "description": "A refined, minimalistic Jekyll theme with comprehensive CI/CD",
+  "private": true,
+  "scripts": {
+    "dev": "bundle exec jekyll serve --livereload --host 0.0.0.0",
+    "build": "bundle exec jekyll build",
+    "clean": "bundle exec jekyll clean",
+    "format": "prettier --write \"**/*.{html,css,js,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{html,css,js,json,md,yml,yaml}\"",
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "lint:markdown": "markdownlint \"**/*.md\" --ignore node_modules --ignore _site",
+    "lint:all": "npm run lint:css && npm run lint:markdown",
+    "test": "npm run lint:all && npm run format:check",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.4",
+    "prettier-plugin-liquid": "^3.1.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "markdownlint-cli": "^0.39.0",
+    "lint-staged": "^15.2.2",
+    "husky": "^9.0.10"
+  },
+  "lint-staged": {
+    "*.{html,css,js,json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix"
+    ],
+    "*.md": [
+      "markdownlint --fix"
+    ]
+  }
+}
