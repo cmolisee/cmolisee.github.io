@@ -1,0 +1,24 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "liquid-html"
+      }
+    },
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}

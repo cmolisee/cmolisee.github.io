@@ -1,0 +1,9 @@
+_site/
+.jekyll-cache/
+.bundle/
+vendor/
+node_modules/
+Gemfile.lock
+package-lock.json
+*.min.css
+*.min.js

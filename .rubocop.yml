@@ -1,0 +1,24 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - '_site/**/*'
+    - 'node_modules/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'Gemfile'
