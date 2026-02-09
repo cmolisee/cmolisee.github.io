@@ -1,0 +1,95 @@
+jekyll-theme-minimal/
+│
+├── .devcontainer/
+│   └── devcontainer.json          # GitHub Codespaces configuration
+│
+├── _includes/                      # Reusable components
+│   ├── header.html                # Site header with navigation
+│   └── footer.html                # Site footer
+│
+├── _layouts/                       # Page templates
+│   ├── default.html               # Base layout (wraps all pages)
+│   ├── home.html                  # Homepage with post list
+│   ├── post.html                  # Individual blog post template
+│   └── page.html                  # Static page template
+│
+├── _posts/                         # Your blog posts (Markdown files)
+│   ├── 2026-02-08-on-minimalism-and-design.md
+│   ├── 2026-02-01-the-art-of-writing.md
+│   └── 2026-01-25-getting-started-with-jekyll.md
+│
+├── assets/
+│   └── css/
+│       └── style.css              # Main stylesheet (all theme styles)
+│
+├── _config.yml                     # Jekyll site configuration
+├── Gemfile                         # Ruby dependencies
+├── .gitignore                      # Git ignore rules
+├── LICENSE                         # MIT License
+│
+├── index.md                        # Homepage content
+├── about.md                        # About page
+│
+├── README.md                       # Full documentation
+├── GETTING_STARTED.md             # Quick start guide
+├── THEME_OVERVIEW.md              # Design overview
+└── FILE_STRUCTURE.txt             # This file
+
+═══════════════════════════════════════════════════════════
+
+KEY FILES EXPLAINED:
+
+📋 Configuration & Setup
+  • devcontainer.json    - Configures GitHub Codespaces environment
+  • _config.yml          - Jekyll site settings (title, URL, plugins)
+  • Gemfile              - Specifies Ruby gem dependencies
+
+🎨 Design & Templates
+  • _layouts/            - HTML templates that wrap content
+  • _includes/           - Reusable HTML snippets
+  • assets/css/style.css - All visual styling
+
+✍️ Content
+  • _posts/              - Blog posts (YYYY-MM-DD-title.md format)
+  • index.md             - Homepage content
+  • about.md             - About page
+
+📚 Documentation
+  • README.md            - Comprehensive guide
+  • GETTING_STARTED.md   - Quick start instructions
+  • THEME_OVERVIEW.md    - Design philosophy & tips
+
+═══════════════════════════════════════════════════════════
+
+HOW IT WORKS:
+
+1. Content files (Markdown) → Front matter specifies layout
+2. Layout templates → Include header/footer components
+3. Jekyll processes everything → Generates static HTML
+4. CSS styles → Makes it beautiful
+5. Deploy → Fast, secure static site!
+
+═══════════════════════════════════════════════════════════
+
+WORKFLOW:
+
+Write                 Process                Output
+─────────────────────────────────────────────────────────
+_posts/my-post.md  →  Jekyll + Liquid    →  _site/my-post.html
+(Markdown)            (templating)         (Static HTML)
+
+                      Uses:
+                      • _layouts/post.html
+                      • _includes/header.html
+                      • _includes/footer.html
+                      • assets/css/style.css
+
+═══════════════════════════════════════════════════════════
+
+FIRST STEPS:
+
+1. Push this folder to GitHub
+2. Open in Codespaces
+3. Wait for auto-setup
+4. Start writing in _posts/
+5. See changes live at port 4000!
