@@ -1,0 +1,46 @@
+<!-- _includes/blog-card.html
+     Usage: {% include blog-card.html post=post %}
+-->
+<article
+  class="group rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+>
+  <a href="{{ include.post.url | relative_url }}" class="block">
+    <!-- Tags -->
+    {% if include.post.tags and include.post.tags.size > 0 %}
+    <div class="mb-3 flex flex-wrap gap-1.5">
+      {% for tag in include.post.tags limit: 3 %}
+      <span class="tag-pill">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Title -->
+    <h2
+      class="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400"
+    >
+      {{ include.post.title }}
+    </h2>
+
+    <!-- Excerpt -->
+    {% if include.post.excerpt %}
+    <p class="mb-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+      {{ include.post.excerpt | strip_html | truncate: 150 }}
+    </p>
+    {% endif %}
+
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-xs text-gray-400 dark:text-gray-600">
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">
+        {{ include.post.date | date: "%B %-d, %Y" }}
+      </time>
+      {% if include.post.author %}
+      <span>&middot;</span>
+      <span>{{ include.post.author }}</span>
+      {% endif %}
+      {% if include.post.read_time %}
+      <span>&middot;</span>
+      <span>{{ include.post.read_time }} min read</span>
+      {% endif %}
+    </div>
+  </a>
+</article>

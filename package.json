@@ -1,0 +1,33 @@
+{
+  "name": "cmolisee",
+  "version": "2026.3.29",
+  "description": "",
+  "scripts": {
+    "build:css": "postcss assets/css/main.css -o _site/assets/css/main.css",
+    "watch:css": "postcss assets/css/main.css -o _site/assets/css/main.css --watch",
+    "build:jekyll": "bundle exec jekyll build",
+    "watch:jekyll": "bundle exec jekyll serve --livereload",
+    "build": "npm run build:css && npm run build:jekyll",
+    "dev": "concurrently \"npm run watch:css\" \"npm run watch:jekyll\"",
+    "lint:js": "eslint assets/js/**/*.js",
+    "lint:html": "htmlhint _site/**/*.html",
+    "lint:css": "stylelint assets/css/**/*.css",
+    "lint": "npm run lint:js && npm run lint:css",
+    "format": "prettier --write \"assets/js/**/*.js\" \"assets/css/**/*.css\" \"_includes/**/*.html\" \"_layouts/**/*.html\"",
+    "format:check": "prettier --check \"assets/js/**/*.js\"",
+    "release": "node scripts/calver-bump.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.17.0",
+    "htmlhint": "^1.1.4",
+    "postcss": "^8.5.1",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.12.0",
+    "stylelint-config-standard": "^36.0.1",
+    "tailwindcss": "^3.4.17"
+  }
+}

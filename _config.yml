@@ -1,0 +1,72 @@
+# =============================================================================
+# Site Configuration
+# =============================================================================
+
+title: "cmolisee"
+description: ""
+baseurl: ""
+url: ""
+
+version: "2026.03.29"
+
+# Build
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+
+# Defaults
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "blog"
+  - scope:
+      path: "_docs"
+      type: "docs"
+    values:
+      layout: "doc"
+
+collections:
+  docs:
+    output: true
+    permalink: /docs/:name/
+
+# Exclude from build
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - postcss.config.js
+  - .eslintrc.js
+  - .prettierrc
+  - .htmlhintrc
+  - "*.sh"
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Navigation — sidebar menu
+nav:
+  - title: "Getting Started"
+    links:
+      - label: "Introduction"
+        url: "/docs/introduction/"
+      - label: "Installation"
+        url: "/docs/installation/"
+  - title: "Blog"
+    links:
+      - label: "All Posts"
+        url: "/blog/"

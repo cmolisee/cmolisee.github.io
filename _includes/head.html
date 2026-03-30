@@ -1,0 +1,35 @@
+<!-- _includes/head.html — document <head> -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Inline dark-mode init: prevents flash of wrong theme -->
+<script>
+  (function () {
+    const t = localStorage.getItem("theme");
+    const dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    if (dark) document.documentElement.classList.add("dark");
+  })();
+</script>
+
+<title>
+  {% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}
+</title>
+
+{% if page.description %}
+<meta name="description" content="{{ page.description }}" />
+{% else %}
+<meta name="description" content="{{ site.description }}" />
+{% endif %}
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Compiled Tailwind CSS -->
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+
+{% seo %}
