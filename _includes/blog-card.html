@@ -1,6 +1,3 @@
-<!-- _includes/blog-card.html
-     Usage: {% include blog-card.html post=post %}
--->
 <article
   class="group rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
 >
@@ -30,14 +27,11 @@
 
     <!-- Meta -->
     <div class="flex items-center gap-3 text-xs text-gray-400 dark:text-gray-600">
-      <time datetime="{{ include.post.date | date_to_xmlschema }}">
-        {{ include.post.date | date: "%B %-d, %Y" }}
-      </time>
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
       {% if include.post.author %}
       <span>&middot;</span>
       <span>{{ include.post.author }}</span>
-      {% endif %}
-      {% if include.post.read_time %}
+      {% endif %} {% if include.post.read_time %}
       <span>&middot;</span>
       <span>{{ include.post.read_time }} min read</span>
       {% endif %}

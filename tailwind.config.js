@@ -4,13 +4,13 @@ module.exports = {
   darkMode: "class",
 
   content: [
-    "./_layouts/**/*.html",
-    "./_includes/**/*.html",
-    "./_posts/**/*.{md,html}",
     "./_docs/**/*.{md,html}",
+    "./_includes/**/*.html",
+    "./_layouts/**/*.html",
+    "./_posts/**/*.{md,html}",
     "./assets/js/**/*.js",
     "./*.{html,md}",
-    "./**/*.{html,md}",
+    "./blog/*.{html,md}",
   ],
 
   theme: {
