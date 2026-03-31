@@ -1,65 +1,65 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/jekyll
 {
-	"name": "Jekyll",
+  "name": "Jekyll",
 
-	"image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
-	"features": {
-        "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainer-config/features/dot-config:4": {}
-	},
+  "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainer-config/features/dot-config:4": {}
+  },
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [4000, 35729],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [4000, 35729],
 
-    "portsAttributes": {
-        "4000": {
-            "label": "Jekyll Server",
-            "onAutoForward": "notify"
+  "portsAttributes": {
+    "4000": {
+      "label": "Jekyll Server",
+      "onAutoForward": "notify"
+    },
+    "35729": {
+      "label": "LiveReload",
+      "onAutoForward": "silent"
+    }
+  },
+
+  // Uncomment the next line to run commands after the container is created.
+  // "postCreateCommand": "jekyll --version"
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "sissel.shopify-liquid",
+        "ginfuru.ginfuru-vscode-jekyll-syntax",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-yaml",
+        "shopify.ruby-lsp",
+        "github.vscode-github-actions",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.associations": {
+          "*.html": "liquid"
         },
-        "35729": {
-            "label": "LiveReload",
-            "onAutoForward": "silent"
+        "emmet.includeLanguages": {
+          "liquid": "html"
         }
-    },
+      }
+    }
+  },
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "jekyll --version"
-
-	// Configure tool-specific properties.
-	"customizations": {
-        "vscode": {
-            "extensions": [
-                "sissel.shopify-liquid",
-                "ginfuru.ginfuru-vscode-jekyll-syntax",
-                "esbenp.prettier-vscode",
-                "stylelint.vscode-stylelint",
-                "davidanson.vscode-markdownlint",
-                "yzhang.markdown-all-in-one",
-                "redhat.vscode-yaml",
-                "rebornix.ruby",
-                "github.vscode-github-actions",
-                "eamodio.gitlens"
-            ],
-            "settings": {
-                "editor.formatOnSave": true,
-                "editor.defaultFormatter": "esbenp.prettier-vscode",
-                "files.associations": {
-                    "*.html": "liquid"
-                },
-                "emmet.includeLanguages": {
-                "liquid": "html"
-                }
-            }
-        }
-    },
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    // "remoteUser": "root"
-	"remoteUser": "vscode"
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+  "remoteUser": "vscode"
 }
