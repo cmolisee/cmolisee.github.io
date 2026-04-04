@@ -1,22 +1,23 @@
 {
-  "semi": true,
-  "singleQuote": false,
-  "tabWidth": 2,
-  "useTabs": false,
-  "printWidth": 100,
-  "trailingComma": "es5",
-  "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "ignore",
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+      }
+    ]
+  },
   "overrides": [
     {
-      "files": "*.html",
+      "files": ["*.html"],
       "options": {
         "parser": "html",
         "printWidth": 120
       }
     },
     {
-      "files": "*.md",
+      "files": ["*.md"],
       "options": {
         "proseWrap": "always"
       }

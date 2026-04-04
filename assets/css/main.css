@@ -2,9 +2,9 @@
    Main Stylesheet — processed by PostCSS + Tailwind
    ============================================================================= */
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* --------------------------------------------------------------------------
    Base layer overrides
@@ -113,16 +113,20 @@
 .highlight table td {
   padding: 0;
 }
+
 .highlight table pre {
   margin: 0;
 }
+
 .highlight,
 .highlight .w {
   color: #d1d5da;
 }
+
 .highlight .err {
   color: #f97583;
 }
+
 .highlight .c,
 .highlight .cd,
 .highlight .cm,
@@ -130,6 +134,7 @@
 .highlight .cs {
   color: #6a737d;
 }
+
 .highlight .k,
 .highlight .kn,
 .highlight .kp,
@@ -137,16 +142,19 @@
 .highlight .kv {
   color: #f97583;
 }
+
 .highlight .o,
 .highlight .ow {
   color: #79b8ff;
 }
+
 .highlight .n,
 .highlight .nb,
 .highlight .ni,
 .highlight .ne {
   color: #e1e4e8;
 }
+
 .highlight .s,
 .highlight .sb,
 .highlight .sc,
@@ -158,16 +166,19 @@
 .highlight .ss {
   color: #9ecbff;
 }
+
 .highlight .na,
 .highlight .nf {
   color: #b392f0;
 }
+
 .highlight .nv,
 .highlight .vc,
 .highlight .vg,
 .highlight .vi {
   color: #ffab70;
 }
+
 .highlight .mi,
 .highlight .mf,
 .highlight .mh,

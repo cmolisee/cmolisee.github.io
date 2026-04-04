@@ -44,7 +44,8 @@
         "redhat.vscode-yaml",
         "shopify.ruby-lsp",
         "github.vscode-github-actions",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "bradlc.vscode-tailwindcss"
       ],
       "settings": {
         "editor.formatOnSave": true,
