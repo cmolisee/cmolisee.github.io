@@ -9,9 +9,8 @@
  * Usage:  node scripts/calver-bump.js
  *   or:   npm run release
  */
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import { path } from "path";
 
 const root = path.resolve(__dirname, "..");
 

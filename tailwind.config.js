@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   // Enable class-based dark mode (toggled via <html class="dark">)
   darkMode: "class",
 
@@ -53,5 +53,5 @@ module.exports = {
     },
   },
 
-  plugins: [require("@tailwindcss/typography")],
+  plugins: ["@tailwindcss/typography"],
 };
