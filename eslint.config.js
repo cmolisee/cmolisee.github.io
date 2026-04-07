@@ -14,4 +14,5 @@ export default {
     quotes: "off",
     indent: "off",
   },
+  ignores: ["**/node_modules/**", "_site/**"],
 };

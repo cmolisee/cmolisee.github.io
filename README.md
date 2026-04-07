@@ -9,7 +9,8 @@ A minimal, production-ready Jekyll template with:
 - 🗂 **Sidebar layout** — 20 / 80 split on desktop, off-canvas toggle on mobile
 - 📄 **Doc layout** — breadcrumbs, prev/next, sticky table of contents
 - 📝 **Blog layout** — tags, hero image, author meta, prev/next navigation
-- 🧩 **`_includes/`** — reusable components (`head`, `header`, `sidebar`, `footer`, `toc`, `blog-card`)
+- 🧩 **`_includes/`** — reusable components (`head`, `header`, `sidebar`, `footer`, `toc`,
+  `blog-card`)
 
 ---
 
@@ -39,14 +40,14 @@ Open <http://localhost:4000>.
 
 ## NPM scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Jekyll + Tailwind watch (concurrent) |
-| `npm run build` | Production build |
-| `npm run lint` | ESLint + Stylelint |
-| `npm run format` | Prettier (write) |
-| `npm run lint:html` | HTMLHint on `_site/` |
-| `npm run release` | Bump CalVer in `_config.yml` + `package.json` |
+| Command             | Description                                   |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Jekyll + Tailwind watch (concurrent)          |
+| `npm run build`     | Production build                              |
+| `npm run lint`      | ESLint + Stylelint                            |
+| `npm run format`    | Prettier (write)                              |
+| `npm run lint:html` | HTMLHint on `_site/`                          |
+| `npm run release`   | Bump CalVer in `_config.yml` + `package.json` |
 
 ---
 
@@ -102,12 +103,21 @@ This updates `version` in both `_config.yml` and `package.json` to today's date.
 ## Customisation
 
 - **Colours** — edit `theme.extend.colors.brand` in `tailwind.config.js`
-- **Fonts** — update the Google Fonts URL in `_includes/head.html` and `fontFamily` in `tailwind.config.js`
+- **Fonts** — update the Google Fonts URL in `_includes/head.html` and `fontFamily` in
+  `tailwind.config.js`
 - **Navigation** — edit the `nav` array in `_config.yml`
 - **New doc pages** — add `.md` files to `_docs/` with `layout: doc`
 - **New blog posts** — add `.md` files to `_posts/` named `YYYY-MM-DD-title.md`
 
 ---
+
+## Development
+
+Nice script to search for any unused css:
+
+```bash
+grep -Po '\.(-?[_a-zA-Z]+[_a-zA-Z0-9-]*)(?![^\{]*\})' ./assets/css/main.css | while read -r class; do if ! grep -r -q "$class" . --include="*.html"; then echo "Class not found: $class"; fi; done > classSearchResults.txt
+```
 
 ## License
 

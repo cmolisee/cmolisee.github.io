@@ -11,10 +11,10 @@ point for documentation sites and blogs — no SCSS, no heavy frameworks.
 
 ## What's included
 
-- **Light/dark mode** — class-based toggling with `localStorage` persistence and a
-  no-flash inline script.
-- **CalVer versioning** — the site version follows `YYYY.0M.0D` and is set in `_config.yml`
-  and `package.json`.
+- **Light/dark mode** — class-based toggling with `localStorage` persistence and a no-flash inline
+  script.
+- **CalVer versioning** — the site version follows `YYYY.0M.0D` and is set in `_config.yml` and
+  `package.json`.
 - **Tailwind CSS** — compiled via PostCSS; no SCSS anywhere.
 - **Linting & formatting** — ESLint, Prettier, HTMLHint, and Stylelint wired into `npm` scripts.
 - **Sidebar layout** — 20 % sidebar / 80 % content on desktop; off-canvas toggle on mobile.
