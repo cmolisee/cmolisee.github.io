@@ -1,3 +1,4 @@
+/** @type {import('stylelint').Config} */
 {
   "extends": ["stylelint-config-standard"],
   "rules": {
