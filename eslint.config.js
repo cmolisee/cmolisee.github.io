@@ -1,18 +1,30 @@
-export default {
-  languageOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import json from "@eslint/json";
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    ignores: [".devcontainer/**", "package-lock.json"],
   },
-  rules: {
-    // Errors
-    "no-unused-vars": "error",
-    "no-console": "off",
-    eqeqeq: ["error", "always"],
-    curly: "error",
-    // Style (handled by Prettier, set to off to avoid conflicts)
-    semi: "off",
-    quotes: "off",
-    indent: "off",
+  tseslint.configs.recommended,
+  {
+    files: ["**/*.json"],
+    plugins: { json },
+    language: "json/json",
+    extends: ["json/recommended"],
+    ignores: [".devcontainer/**", "package-lock.json"],
   },
-  ignores: ["**/node_modules/**", "_site/**"],
-};
+  {
+    files: ["**/*.jsonc"],
+    plugins: { json },
+    language: "json/jsonc",
+    extends: ["json/recommended"],
+    ignores: [".devcontainer/**", "package-lock.json"],
+  },
+]);
