@@ -2,7 +2,6 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* colors */
   --color-brand-50: "#f0f9ff";
   --color-brand-100: "#e0f2fe";
   --color-brand-200: "#bae6fd";
@@ -13,13 +12,9 @@
   --color-brand-700: "#0369a1";
   --color-brand-800: "#075985";
   --color-brand-900: "#0c4a6e";
-
-  /* typography */
   --font-sans: "IBM Plex Mono", "Geist Mono", "Commit Mono", ui-monospace, monospace;
   --font-mono: "IBM Plex Mono", "Geist Mono", "Cascadia Code", ui-monospace, monospace;
   --font-display: "Geist Mono", "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
-
-  /* other */
   --line-height-none: 1;
   --line-height-tight: 1.25;
   --line-height-snug: 1.375;
@@ -96,8 +91,6 @@
   --z-modal: 30;
   --z-toast: 40;
   --z-tooltip: 50;
-
-  /* transitions */
   --ease-snappy: cubic-bezier(0.25, 0, 0.1, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -112,15 +105,12 @@
   :root {
     color-scheme: light;
 
-    /* Surfaces */
     --bg-page: var(--color-slate-50);
     --bg-surface: #fff;
     --bg-elevated: #fff;
     --bg-subtle: var(--color-slate-100);
     --bg-code: var(--color-slate-100);
     --bg-pre: var(--color-slate-900);
-
-    /* Text */
     --text-primary: var(--color-slate-900);
     --text-secondary: var(--color-slate-600);
     --text-muted: var(--color-slate-400);
@@ -128,17 +118,11 @@
     --text-code: var(--color-brand-700);
     --text-link: var(--color-brand-600);
     --text-link-hover: var(--color-brand-700);
-
-    /* Borders */
     --border-default: var(--color-slate-200);
     --border-strong: var(--color-slate-300);
     --border-focus: var(--color-brand-500);
-
-    /* Accent */
     --accent-primary: var(--color-brand-500);
     --accent-secondary: var(--color-brand-300);
-
-    /* Prose tokens — light */
     --prose-body: var(--color-slate-700);
     --prose-headings: var(--color-slate-900);
     --prose-lead: var(--color-slate-600);
@@ -163,15 +147,12 @@
     :root {
       color-scheme: dark;
 
-      /* Surfaces */
       --bg-page: var(--color-zinc-950);
       --bg-surface: var(--color-zinc-900);
       --bg-elevated: var(--color-zinc-800);
       --bg-subtle: var(--color-zinc-800);
       --bg-code: var(--color-zinc-800);
       --bg-pre: #07090c;
-
-      /* Text */
       --text-primary: var(--color-slate-100);
       --text-secondary: var(--color-slate-400);
       --text-muted: var(--color-slate-500);
@@ -179,17 +160,11 @@
       --text-code: var(--color-brand-300);
       --text-link: var(--color-brand-400);
       --text-link-hover: var(--color-brand-300);
-
-      /* Borders */
       --border-default: var(--color-zinc-700);
       --border-strong: var(--color-zinc-600);
       --border-focus: var(--color-brand-400);
-
-      /* Accent */
       --accent-primary: var(--color-brand-400);
       --accent-secondary: var(--color-brand-300);
-
-      /* Prose tokens — dark */
       --prose-body: var(--color-slate-300);
       --prose-headings: var(--color-slate-100);
       --prose-lead: var(--color-slate-400);
@@ -307,7 +282,6 @@
 
 @layer components {
   .prose {
-    /* Colour */
     --tw-prose-body: var(--prose-body);
     --tw-prose-headings: var(--prose-headings);
     --tw-prose-lead: var(--prose-lead);
@@ -326,8 +300,6 @@
     --tw-prose-pre-bg: var(--prose-pre-bg);
     --tw-prose-th-borders: var(--prose-th-borders);
     --tw-prose-td-borders: var(--prose-td-borders);
-
-    /* Invert variant (prose-invert) */
     --tw-prose-invert-body: var(--color-slate-300);
     --tw-prose-invert-headings: var(--color-slate-100);
     --tw-prose-invert-lead: var(--color-slate-400);
@@ -346,11 +318,7 @@
     --tw-prose-invert-pre-bg: #07090c;
     --tw-prose-invert-th-borders: var(--color-zinc-600);
     --tw-prose-invert-td-borders: var(--color-zinc-700);
-
-    /* max-width — wider reading column than the default 65ch */
     max-width: 72ch;
-
-    /* Font — mono throughout */
     font-family: var(--font-mono);
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
@@ -415,7 +383,6 @@
     content: none;
   }
 
-  /* Headings — mono, upright, tight tracking */
   .prose h1,
   .prose h2,
   .prose h3,
@@ -428,7 +395,6 @@
     color: var(--tw-prose-headings);
   }
 
-  /* Blockquote — upright, terminal ">" prefix via CSS */
   .prose blockquote {
     border-left-color: var(--tw-prose-quote-borders);
     border-left-width: 2px;
@@ -446,7 +412,6 @@
     content: none;
   }
 
-  /* dark */
   .prose-invert a {
     color: var(--tw-prose-invert-links);
     text-decoration-color: rgb(from var(--color-brand-400) r g b / 50%);
@@ -463,7 +428,6 @@
     border-color: var(--color-zinc-700);
   }
 
-  /* Sidebar nav link */
   .nav-link {
     @apply flex items-center gap-2 rounded-md px-3 py-1.5 text-sm text-gray-600 transition-colors;
     @apply hover:bg-gray-100 hover:text-gray-900;
@@ -475,7 +439,6 @@
     @apply dark:bg-brand-900/30 dark:text-brand-300;
   }
 
-  /* Nav section heading */
   .nav-section-title {
     @apply mb-1 mt-4 px-3 text-xs font-semibold uppercase tracking-widest text-gray-400;
     @apply dark:text-gray-600;
@@ -487,65 +450,59 @@
   }
 }
 
-@layer utilities {
-  /* Semantic surfaces */
-  .bg-page {
-    background-color: var(--bg-page);
-  }
+@utility bg-page {
+  background-color: var(--bg-page);
+}
 
-  .bg-surface {
-    background-color: var(--bg-surface);
-  }
+@utility bg-surface {
+  background-color: var(--bg-surface);
+}
 
-  .bg-elevated {
-    background-color: var(--bg-elevated);
-  }
+@utility bg-elevated {
+  background-color: var(--bg-elevated);
+}
 
-  .bg-subtle {
-    background-color: var(--bg-subtle);
-  }
+@utility bg-subtle {
+  background-color: var(--bg-subtle);
+}
 
-  .text-page-primary {
-    color: var(--text-primary);
-  }
+@utility text-page-primary {
+  color: var(--text-primary);
+}
 
-  .text-page-secondary {
-    color: var(--text-secondary);
-  }
+@utility text-page-secondary {
+  color: var(--text-secondary);
+}
 
-  .text-page-muted {
-    color: var(--text-muted);
-  }
+@utility text-page-muted {
+  color: var(--text-muted);
+}
 
-  .text-brand {
-    color: var(--accent-primary);
-  }
+@utility text-brand {
+  color: var(--accent-primary);
+}
 
-  /* Semantic borders */
-  .border-page {
-    border-color: var(--border-default);
-  }
+@utility border-page {
+  border-color: var(--border-default);
+}
 
-  .border-page-strong {
-    border-color: var(--border-strong);
-  }
+@utility border-page-strong {
+  border-color: var(--border-strong);
+}
 
-  /* Brand glow ring */
-  .ring-brand {
-    box-shadow: var(--shadow-brand);
-  }
+@utility ring-brand {
+  box-shadow: var(--shadow-brand);
+}
 
-  /* Page-level transition (apply to body or root wrapper) */
-  .transition-page {
-    transition:
-      background-color var(--duration-normal) var(--ease-smooth),
-      color var(--duration-normal) var(--ease-smooth),
-      border-color var(--duration-normal) var(--ease-smooth);
-  }
+@utility transition-page {
+  transition:
+    background-color var(--duration-normal) var(--ease-smooth),
+    color var(--duration-normal) var(--ease-smooth),
+    border-color var(--duration-normal) var(--ease-smooth);
+}
 
-  .sidebar-transition {
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+@utility sidebar-transition {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .highlight table td {
@@ -566,7 +523,6 @@
 }
 
 .highlight .c,
-.highlight .cd,
 .highlight .cm,
 .highlight .c1,
 .highlight .cs {
@@ -574,10 +530,7 @@
 }
 
 .highlight .k,
-.highlight .kn,
-.highlight .kp,
-.highlight .kr,
-.highlight .kv {
+.highlight .kn {
   color: #f97583;
 }
 
@@ -594,13 +547,9 @@
 }
 
 .highlight .s,
-.highlight .sb,
 .highlight .sc,
-.highlight .sd,
 .highlight .s2,
 .highlight .sh,
-.highlight .sx,
-.highlight .s1,
 .highlight .ss {
   color: #9ecbff;
 }
@@ -611,7 +560,6 @@
 }
 
 .highlight .nv,
-.highlight .vc,
 .highlight .vg,
 .highlight .vi {
   color: #ffab70;
@@ -619,7 +567,6 @@
 
 .highlight .mi,
 .highlight .mf,
-.highlight .mh,
 .highlight .mo,
 .highlight .mx {
   color: #79b8ff;

@@ -16,8 +16,7 @@
     "lint:css": "stylelint assets/css/**/*.css",
     "lint": "npm run lint:js && npm run lint:css",
     "format": "prettier --write \"assets/js/**/*.js\" \"assets/css/**/*.css\" \"_includes/**/*.html\" \"_layouts/**/*.html\"",
-    "format:check": "prettier --check \"assets/js/**/*.js\"",
-    "release": "node scripts/calver-bump.js"
+    "format:check": "prettier --check \"assets/js/**/*.js\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

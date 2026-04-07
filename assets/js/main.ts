@@ -1,21 +1,17 @@
+type themeType = "dark" | "light";
+
 const html = document.documentElement;
 
-/**
- * Apply theme to <html> element and persist to localStorage.
- * @param {"dark"|"light"} theme
- */
-function applyTheme(theme) {
-  if (theme === "dark") {
-    html.classList.add("dark");
-  } else {
-    html.classList.remove("dark");
-  }
+// Apply theme to <html> element and persist to localStorage
+function applyTheme(theme: themeType): void {
+  const func = theme === "dark" ? "add" : "remove";
+  html.classList[func]("dark");
   localStorage.setItem("mode", theme);
   updateThemeIcons(theme);
 }
 
-/** Sync the sun/moon icon visibility with the current theme. */
-function updateThemeIcons(theme) {
+// Sync the sun/moon icon visibility with the current theme
+function updateThemeIcons(theme: themeType): void {
   document.querySelectorAll("[data-icon-sun]").forEach((el) => {
     el.classList.toggle("hidden", theme !== "dark");
   });
@@ -24,8 +20,8 @@ function updateThemeIcons(theme) {
   });
 }
 
-/** Return the resolved theme from storage or system preference. */
-function resolvedTheme() {
+// Return the resolved theme from storage or system preference
+function resolvedTheme(): themeType {
   const stored = localStorage.getItem("mode");
   if (stored === "dark" || stored === "light") {
     return stored;
@@ -33,12 +29,16 @@ function resolvedTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-// Initialise — must run before paint to avoid flash
-(function initTheme() {
-  applyTheme(resolvedTheme());
-})();
-
+// initialize after paint
 document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.getElementById("sidebar");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+  const openBtn = document.getElementById("sidebar-open");
+  const closeBtn = document.getElementById("sidebar-close");
+  const currentPath = window.location.pathname.replace(/\/$/, "");
+
+  if (!sidebar) return;
+
   // Bind toggle buttons
   document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -47,25 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ── 2. Mobile Sidebar ──────────────────────────────────────────────────── */
-
-  const sidebar = document.getElementById("sidebar");
-  const sidebarOverlay = document.getElementById("sidebar-overlay");
-  const openBtn = document.getElementById("sidebar-open");
-  const closeBtn = document.getElementById("sidebar-close");
-
-  if (!sidebar) {
-    return;
-  }
-
-  function openSidebar() {
+  function openSidebar(): void {
+    if (!sidebar) return;
     sidebar.classList.remove("-translate-x-full");
     sidebarOverlay?.classList.remove("hidden");
     document.body.classList.add("overflow-hidden");
     openBtn?.setAttribute("aria-expanded", "true");
   }
 
-  function closeSidebar() {
+  function closeSidebar(): void {
+    if (!sidebar) return;
     sidebar.classList.add("-translate-x-full");
     sidebarOverlay?.classList.add("hidden");
     document.body.classList.remove("overflow-hidden");
@@ -84,10 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ── 3. Active Nav Link ─────────────────────────────────────────────────── */
-
-  const currentPath = window.location.pathname.replace(/\/$/, "");
-
   document.querySelectorAll(".nav-link").forEach((link) => {
     const href = link.getAttribute("href")?.replace(/\/$/, "");
     if (href && (currentPath === href || currentPath.startsWith(href + "/"))) {
@@ -95,3 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// initialize before paint
+applyTheme(resolvedTheme());
