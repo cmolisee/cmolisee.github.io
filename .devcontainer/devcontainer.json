@@ -2,7 +2,6 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/jekyll
 {
   "name": "Jekyll",
-
   "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
@@ -27,10 +26,8 @@
       "onAutoForward": "silent"
     }
   },
-
-  // Uncomment the next line to run commands after the container is created.
-  // "postCreateCommand": "jekyll --version"
-
+  // Use postCreateCommand for one-time setup like installing dependencies
+  "postCreateCommand": "bash .devcontainer/setup.sh",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
