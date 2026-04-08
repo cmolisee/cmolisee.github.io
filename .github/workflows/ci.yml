@@ -49,9 +49,12 @@ jobs:
           name: workspace
           path: .
       - name: Format js,ts,tsx,css,html,md,mdx
-        run: npm run format
+        run: npx prettier --write **/*.{js,ts,tsx,html,css} !_site/**/*
       - name: Lint js,ts,tsx,css,html
-        run: npm run lint
+        run: |
+          eslint . --fix
+          htmlhint _site/**/*.html
+          stylelint assets/css/**/*.css --fix
 
   build:
     needs: [setup, format-lint]
