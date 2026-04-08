@@ -27,7 +27,9 @@
 
     <!-- Meta -->
     <div class="flex items-center gap-3 text-xs text-gray-400 dark:text-gray-600">
-      <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">
+        {{ include.post.date | date: "%B %-d, %Y" }}
+      </time>
       {% if include.post.author %}
       <span>&middot;</span>
       <span>{{ include.post.author }}</span>

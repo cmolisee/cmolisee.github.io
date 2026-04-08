@@ -27,10 +27,14 @@ layout: default
     {% endif %}
 
     <!-- Title -->
-    <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{{ page.title }}</h1>
+    <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+      {{ page.title }}
+    </h1>
 
     <!-- Meta row -->
-    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+    <div
+      class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400"
+    >
       {% if page.author %}
       <span class="flex items-center gap-1.5">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -58,7 +62,11 @@ layout: default
       {% if page.read_time %}
       <span class="flex items-center gap-1.5">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
         </svg>
         {{ page.read_time }} min read
       </span>

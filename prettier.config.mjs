@@ -1,4 +1,6 @@
-module.exports = {
+/** @type {import("prettier").Config} */
+export default {
+  "plugins": ["@shopify/prettier-plugin-liquid"],
   "semi": true,
   "singleQuote": false,
   "tabWidth": 2,
@@ -8,13 +10,6 @@ module.exports = {
   "bracketSpacing": true,
   "htmlWhitespaceSensitivity": "ignore",
   "overrides": [
-    {
-      "files": "*.html",
-      "options": {
-        "parser": "html",
-        "printWidth": 120
-      }
-    },
     {
       "files": "*.md",
       "options": {

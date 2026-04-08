@@ -10,7 +10,9 @@ title: Blog
   </header>
 
   {% if site.posts.size > 0 %}
-  <div class="space-y-4">{% for post in site.posts %} {% include blog-card.html post=post %} {% endfor %}</div>
+  <div class="space-y-4">
+    {% for post in site.posts %} {% include blog-card.html post=post %} {% endfor %}
+  </div>
   {% else %}
   <p class="text-gray-500 dark:text-gray-400">
     No posts yet. Add Markdown files to
