@@ -38,6 +38,7 @@ jobs:
           name: workspace
           path: .
           retention-days: 1
+          include-hidden-files: true
 
   format-lint:
     needs: setup
