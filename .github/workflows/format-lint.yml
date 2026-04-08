@@ -1,0 +1,24 @@
+name: Format & Lint
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.9'
+          bundler-cache: true
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Install Node dependencies
+        run: npm ci
+      - name: Format
+        run: npm run format
+      - name: Lint
+        run: npm run lint
