@@ -11,16 +11,16 @@
     "build": "npm run build:css && npm run build:jekyll",
     "dev": "concurrently \"npm run watch:css\" \"npm run watch:jekyll\"",
     "lint": "concurrently \"eslint . --fix\" \"htmlhint _site/**/*.html\" \"stylelint assets/css/**/*.css --fix\"",
-    "format": "prettier --write \"**/*.{js,ts,tsx,html,css}\"",
-    "format:check": "prettier --check \"assets/js/**/*.js\"",
+    "format": "prettier --write \"**/*.{js,ts,tsx,html,css}\" \"!_site/**/*\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,html,css}\" \"!_site/**/*\"",
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "!(_site/**/*)*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{css,md,mdx}": [
+    "!(_site/**/*)*.{css,md,mdx}": [
       "prettier --write",
       "stylelint --fix"
     ],
