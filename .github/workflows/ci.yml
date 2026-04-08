@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.cache.outputs.cache-hit }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.9'
+          bundler-cache: true
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Install Packages
+        run: npm ci
+      - name: Upload 'workspace' Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: workspace
+          path: .
+          retention-days: 1
+
+  format-lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get 'workspace' Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+      - name: Format/Lint Ruby
+        run: bundle exec rubocop
+      - name: Format js,ts,tsx,css,html,md,mdx
+        run: npm run format
+      - name: Lint js,ts,tsx,css,html
+        run: npm run lint
+
+  build:
+    needs: [setup, format-lint]
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get 'workspace' Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: workspace
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+      - name: Validate Site
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --checks Links,Images,Scripts \
+            --allow_hash_href \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+      - name: Upload Build Artifacts
+        uses: actions/upload-pages-artifact@v3
+
+  preview:
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Comment Build for Preview
+        uses: actions/github-script@v8
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '**Preview Build Ready!**\n\nPreview changes [BUILD](${{ env.url }})._'
+            })
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
