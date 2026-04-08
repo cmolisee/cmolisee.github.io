@@ -1,11 +1,19 @@
 /** @type {import('stylelint').Config} */
-{
-  "extends": ["stylelint-config-standard"],
-  "rules": {
+export default {
+  extends: ["stylelint-config-standard"],
+  rules: {
+    "alpha-value-notation": "percentage",
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        except: ["first-nested", "blockless-after-blockless"],
+        ignore: ["after-comment", "inside-block"],
+      },
+    ],
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
+        ignoreAtRules: [
           "tailwind",
           "apply",
           "layer",
@@ -14,122 +22,103 @@
           "variant",
           "utility",
           "source",
-          "config"
-        ]
-      }
-    ],
-    "function-no-unknown": [
-      true,
-      {
-        "ignoreFunctions": ["theme", "screen", "color-mix", "oklch", "rgb", "hsl"]
-      }
+          "config",
+        ],
+      },
     ],
     "color-function-notation": "modern",
-    "alpha-value-notation": "percentage",
     "color-named": "never",
-    "length-zero-no-unit": [true, { "ignore": ["custom-properties"] }],
-    "selector-class-pattern": [
-      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^(prose|dark|light|not-prose)([-_][a-zA-Z0-9]+)*$",
+    "comment-empty-line-before": [
+      "always",
       {
-        "message": "Class selectors should be kebab-case or a recognised Tailwind pattern"
-      }
+        except: ["first-nested"],
+        ignore: ["after-comment", "stylelint-commands"],
+      },
+    ],
+    "custom-property-empty-line-before": [
+      "always",
+      {
+        except: ["after-custom-property", "first-nested"],
+        ignore: ["after-comment", "inside-single-line-block"],
+      },
     ],
     "custom-property-pattern": [
       "^(tw-|color-|font-|spacing-|radius-|shadow-|ease-|duration-|z-|bg-|text-|border-|accent-|prose-)[a-zA-Z0-9-]+$|^[a-z][a-zA-Z0-9-]*$",
       {
-        "message": "Custom properties must follow project naming conventions (kebab-case with allowed prefixes)"
-      }
+        message:
+          "Custom properties must follow project naming conventions (kebab-case with allowed prefixes)",
+      },
     ],
-    "import-notation": "string",
-    "no-descending-specificity": null,
-    "selector-pseudo-element-no-unknown": [
+    "declaration-block-no-redundant-longhand-properties": true,
+    "declaration-empty-line-before": null,
+    "font-family-name-quotes": "always-where-recommended",
+    "function-no-unknown": [
       true,
       {
-        "ignorePseudoElements": [
-          "webkit-scrollbar",
-          "webkit-scrollbar-track",
-          "webkit-scrollbar-thumb"
-        ]
-      }
+        ignoreFunctions: ["theme", "screen", "color-mix", "oklch", "rgb", "hsl"],
+      },
     ],
-    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }],
-    "value-keyword-case": [
-      "lower",
-      { "ignoreKeywords": ["currentColor", "optimizeLegibility", "IBM", "Plex"] }
+    "import-notation": "string",
+    "length-zero-no-unit": [
+      true,
+      {
+        ignore: ["custom-properties"],
+      },
     ],
-    "shorthand-property-no-redundant-values": true,
-    "declaration-block-no-redundant-longhand-properties": true,
-    "font-family-name-quotes": "always-where-recommended",
     "media-feature-range-notation": "context",
-    "custom-property-empty-line-before": [
-      "always",
-      {
-        "except": ["after-custom-property", "first-nested"],
-        "ignore": ["after-comment", "inside-single-line-block"]
-      }
-    ],
-    "comment-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested"],
-        "ignore": ["after-comment", "stylelint-commands"]
-      }
-    ],
-    "at-rule-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested", "blockless-after-blockless"],
-        "ignore": ["after-comment", "inside-block"]
-      }
-    ],
+    "no-descending-specificity": null,
     "rule-empty-line-before": [
       "always-multi-line",
       {
-        "except": ["first-nested"],
-        "ignore": ["after-comment"]
-      }
+        except: ["first-nested"],
+        ignore: ["after-comment"],
+      },
     ],
-    "declaration-empty-line-before": null
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^(prose|dark|light|not-prose)([-_][a-zA-Z0-9]+)*$",
+      {
+        message: "Class selectors should be kebab-case or a recognised Tailwind pattern",
+      },
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        ignorePseudoClasses: ["global", "local"],
+      },
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        ignorePseudoElements: [
+          "webkit-scrollbar",
+          "webkit-scrollbar-track",
+          "webkit-scrollbar-thumb",
+        ],
+      },
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "value-keyword-case": [
+      "lower",
+      {
+        ignoreKeywords: ["currentColor", "optimizeLegibility", "IBM", "Plex"],
+      },
+    ],
   },
-  "ignoreFiles": ["_site/**", "**/_site/**", "**/node_modules/*", "**/*.min.css"],
-  "overrides": [
+  overrides: [
     {
-      "files": ["**/*.html", "**/*.htm"],
-      "customSyntax": "postcss-html",
-      "rules": {
-        "rule-empty-line-before": [
-          "always-multi-line",
-          {
-            "except": ["first-nested", "blockless-after-same-name-blockless", "inside-block"],
-            "ignore": ["after-comment", "inside-block"]
-          }
-        ],
-        "comment-empty-line-before": [
-          "always",
-          {
-            "except": ["first-nested"],
-            "ignore": ["after-comment", "stylelint-commands"]
-          }
-        ],
-        "declaration-block-single-line-max-declarations": null,
-        "selector-class-pattern": null,
-        "custom-property-pattern": null
-      }
-    },
-    {
-      "files": ["**/*.md", "**/*.mdx"],
-      "customSyntax": "postcss-markdown",
-      "rules": {
+      customSyntax: "postcss-markdown",
+      files: ["**/*.md", "**/*.mdx"],
+      rules: {
+        "at-rule-no-unknown": null,
+        "color-named": null,
+        "comment-empty-line-before": null,
+        "custom-property-pattern": null,
+        "declaration-block-no-redundant-longhand-properties": null,
         "no-empty-source": null,
         "rule-empty-line-before": null,
-        "comment-empty-line-before": null,
-        "declaration-block-no-redundant-longhand-properties": null,
-        "shorthand-property-no-redundant-values": null,
-        "color-named": null,
         "selector-class-pattern": null,
-        "custom-property-pattern": null,
-        "at-rule-no-unknown": null
-      }
-    }
-  ]
-}
+        "shorthand-property-no-redundant-values": null,
+      },
+    },
+  ],
+};
