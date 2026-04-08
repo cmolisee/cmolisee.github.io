@@ -10,13 +10,24 @@
     "watch:jekyll": "bundle exec jekyll serve --watch --livereload",
     "build": "npm run build:css && npm run build:jekyll",
     "dev": "concurrently \"npm run watch:css\" \"npm run watch:jekyll\"",
-    "lint:js": "eslint .",
-    "lint:js:fix": "eslint . --fix",
-    "lint:html": "htmlhint _site/**/*.html",
-    "lint:css": "stylelint assets/css/**/*.css",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "concurrently \"eslint . --fix\" \"htmlhint **/*.html\" \"stylelint assets/css/**/*.css --fix\"",
     "format": "prettier --write \"assets/js/**/*.js\" \"assets/css/**/*.css\" \"_includes/**/*.html\" \"_layouts/**/*.html\"",
-    "format:check": "prettier --check \"assets/js/**/*.js\""
+    "format:check": "prettier --check \"assets/js/**/*.js\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,md,mdx}": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.html": [
+      "prettier --write",
+      "htmlhint"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -27,6 +38,8 @@
     "eslint": "^10.2.0",
     "globals": "^17.4.0",
     "htmlhint": "^1.9.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "postcss": "^8.5.8",
     "postcss-cli": "^11.0.1",
     "postcss-html": "^1.8.1",
