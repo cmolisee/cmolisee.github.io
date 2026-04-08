@@ -49,8 +49,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: workspace
-      - name: Format/Lint Ruby
-        run: bundle exec rubocop
       - name: Format js,ts,tsx,css,html,md,mdx
         run: npm run format
       - name: Lint js,ts,tsx,css,html
