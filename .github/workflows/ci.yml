@@ -18,69 +18,61 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3.9'
           bundler-cache: true
-      - name: Install Node
-        uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: 'npm'
-      - name: Install Packages
-        run: npm ci
-      - name: Upload 'workspace' Artifacts
-        uses: actions/upload-artifact@v6
-        with:
-          name: workspace
-          path: .
-          retention-days: 1
+      - run: npm ci
 
   format-lint:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Get 'workspace' Artifacts
-        uses: actions/download-artifact@v8
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          name: workspace
-          path: .
-      - name: Format js,ts,tsx,css,html,md,mdx
-        run: npx prettier --write **/*.{js,ts,tsx,html,css} !_site/**/*
-      - name: Lint js,ts,tsx,css,html
-        run: |
-          eslint . --fix
-          htmlhint _site/**/*.html
-          stylelint assets/css/**/*.css --fix
+          node-version: 'lts/*'
+          cache: 'npm'
+      - run: npm ci
+      - name: FORMAT AND LINT
+        run: | 
+          npm run format
+          npm run lint
+      - name: AUTO COMMIT FORMAT AND LINT CHANGES
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: auto-format and lint fixes"
 
   build:
     needs: [setup, format-lint]
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: Get 'workspace' Artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
         with:
-          name: workspace
-          path: .
-      - name: Setup Pages
+          ruby-version: '3.3.9'
+          bundler-cache: true
+      - name: SETUP PAGES
         id: pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
+      - name: BUILD WITH JEKYLL
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Validate Site
+      - name: VALIDATE _SITE
         run: |
           bundle exec htmlproofer _site \
             --disable-external \
             --checks Links,Images,Scripts \
             --allow_hash_href \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
-      - name: Upload Build Artifacts
+      - name: UPLOADE BUILD ARTIFACTS
         uses: actions/upload-pages-artifact@v3
 
   preview:
@@ -91,7 +83,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Comment Build for Preview
+      - name: ADD PREVIEW TO PR IN COMMIT MESSAGE
         uses: actions/github-script@v8
         with:
           script: |
@@ -110,6 +102,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: DEPLOY GITHUB PAGES
         id: deployment
         uses: actions/deploy-pages@v5
