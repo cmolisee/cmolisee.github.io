@@ -17,8 +17,6 @@ concurrency:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    outputs:
-      cache-hit: ${{ steps.cache.outputs.cache-hit }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -49,6 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: workspace
+          path: .
       - name: Format js,ts,tsx,css,html,md,mdx
         run: npm run format
       - name: Lint js,ts,tsx,css,html
@@ -63,6 +62,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: workspace
+          path: .
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
