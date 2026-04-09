@@ -1,30 +1,60 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import json from "@eslint/json";
 import { defineConfig } from "eslint/config";
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier";
+import importPlugin from "eslint-plugin-import";
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    plugins: { js },
-    extends: ["js/recommended"],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
-    ignores: [".devcontainer/**", "package-lock.json"],
+    ignores: [
+      "_site/**",
+      ".jekyll-cache/**",
+      "vendor/**",
+      "node_modules/**",
+      "dist/**",
+      "**/*.min.js",
+    ],
   },
-  tseslint.configs.recommended,
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ["**/*.json"],
-    plugins: { json },
-    language: "json/json",
-    extends: ["json/recommended"],
-    ignores: [".devcontainer/**", "package-lock.json"],
+    plugins: { import: importPlugin },
+    settings: {
+      "import/resolver": { node: true, typescript: true },
+    },
+    rules: {
+      "import/no-duplicates": "error",
+      "import/no-unresolved": "off",
+      "import/oder": [
+        "warn",
+        {
+          groups: ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+    },
   },
   {
-    files: ["**/*.jsonc"],
-    plugins: { json },
-    language: "json/jsonc",
-    extends: ["json/recommended"],
-    ignores: [".devcontainer/**", "package-lock.json"],
+    files: ["**/*.{js,ts,tsx}"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
+      "@typescript-eslint/no-non-null-assertion": "warn",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "prefer-const": "error",
+      "no-var": "error",
+      eqeqeq: ["error", "always", { null: "ignore" }],
+      curly: ["error", "all"],
+    },
   },
+  {
+    files: ["**/*.js", "**/*.mjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-var-requires": "off",
+    },
+  },
+  eslintConfigPrettier,
 ]);

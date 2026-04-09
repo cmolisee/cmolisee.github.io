@@ -2,7 +2,6 @@
 layout: default
 title: Blog
 ---
-
 <div class="mx-auto max-w-2xl">
   <header class="mb-10">
     <h1 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Blog</h1>
@@ -10,14 +9,16 @@ title: Blog
   </header>
 
   {% if site.posts.size > 0 %}
-  <div class="space-y-4">
-    {% for post in site.posts %} {% include blog-card.html post=post %} {% endfor %}
-  </div>
+    <div class="space-y-4">
+      {% for post in site.posts %}
+        {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
   {% else %}
-  <p class="text-gray-500 dark:text-gray-400">
-    No posts yet. Add Markdown files to
-    <code>_posts/</code>
-    .
-  </p>
+    <p class="text-gray-500 dark:text-gray-400">
+      No posts yet. Add Markdown files to
+      <code>_posts/</code>
+      .
+    </p>
   {% endif %}
 </div>

@@ -38,14 +38,14 @@
   <!-- Nav content — scrollable -->
   <nav class="flex-1 overflow-y-auto px-3 pb-6 pt-4 text-sm">
     {% for section in site.nav %}
-    <p class="nav-section-title">{{ section.title }}</p>
-    <ul class="space-y-0.5">
-      {% for link in section.links %}
-      <li>
-        <a href="{{ link.url | relative_url }}" class="nav-link">{{ link.label }}</a>
-      </li>
-      {% endfor %}
-    </ul>
+      <p class="nav-section-title">{{ section.title }}</p>
+      <ul class="space-y-0.5">
+        {% for link in section.links %}
+          <li>
+            <a href="{{ link.url | relative_url }}" class="nav-link">{{ link.label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
     {% endfor %}
   </nav>
 

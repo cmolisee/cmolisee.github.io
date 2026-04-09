@@ -1,0 +1,17 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+node_modules/
+vendor/
+vendor/bundle/
+
+**/*.min.js
+**/*.min.css
+
+dist/
+assets/js/budnle.js
+.git/
+*.ocik
+Gemfile.lock
+package-lock.json

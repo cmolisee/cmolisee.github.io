@@ -2,7 +2,6 @@
 layout: default
 title: Home
 ---
-
 <div class="mx-auto max-w-3xl">
   <!-- Hero -->
   <section class="mb-16 text-center">
@@ -32,42 +31,47 @@ title: Home
   <section class="mb-16">
     <h2 class="mb-6 text-xl font-semibold text-gray-900 dark:text-white">What's included</h2>
     <div class="grid gap-4 sm:grid-cols-2">
-      {% assign features = "Light & dark mode|CalVer versioning|Tailwind CSS (no SCSS)|Sidebar
-      layout (20/80)|Doc post layout|Blog post layout|ESLint + Prettier|HTMLHint + Stylelint" |
-      split: "|" %} {% for feature in features %}
-      <div
-        class="flex items-start gap-3 rounded-lg border border-gray-200 p-4 dark:border-gray-800"
-      >
-        <svg
-          class="mt-0.5 h-5 w-5 shrink-0 text-brand-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+      {% assign features = 'Light & dark mode|CalVer versioning|Tailwind CSS (no SCSS)|Sidebar
+      layout (20/80)|Doc post layout|Blog post layout|ESLint + Prettier|HTMLHint + Stylelint'
+        | split: '|'
+      %}
+      {% for feature in features %}
+        <div
+          class="flex items-start gap-3 rounded-lg border border-gray-200 p-4 dark:border-gray-800"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-        </svg>
-        <span class="text-sm text-gray-700 dark:text-gray-300">{{ feature }}</span>
-      </div>
+          <svg
+            class="mt-0.5 h-5 w-5 shrink-0 text-brand-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="text-sm text-gray-700 dark:text-gray-300">{{ feature }}</span>
+        </div>
       {% endfor %}
     </div>
   </section>
 
   <!-- Latest posts -->
-  {% assign latest_posts = site.posts | limit: 3 %} {% if latest_posts.size > 0 %}
-  <section>
-    <div class="mb-6 flex items-center justify-between">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Latest posts</h2>
-      <a
-        href="{{ '/blog/' | relative_url }}"
-        class="text-sm text-brand-600 hover:underline dark:text-brand-400"
-      >
-        View all →
-      </a>
-    </div>
-    <div class="space-y-4">
-      {% for post in latest_posts %} {% include blog-card.html post=post %} {% endfor %}
-    </div>
-  </section>
+  {% assign latest_posts = site.posts | limit: 3 %}
+  {% if latest_posts.size > 0 %}
+    <section>
+      <div class="mb-6 flex items-center justify-between">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Latest posts</h2>
+        <a
+          href="{{ '/blog/' | relative_url }}"
+          class="text-sm text-brand-600 hover:underline dark:text-brand-400"
+        >
+          View all →
+        </a>
+      </div>
+      <div class="space-y-4">
+        {% for post in latest_posts %}
+          {% include blog-card.html post=post %}
+        {% endfor %}
+      </div>
+    </section>
   {% endif %}
 </div>

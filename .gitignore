@@ -1,11 +1,20 @@
 # Jekyll
 _site/
-.sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 
 # Node
 node_modules/
+
+# ruby
+vendor/bundle/
+.bundle/
+.sass-cache/
+
+# artifacts
+dist/
+assets/js/*.js
+assets/js/*.js.map
 
 # OS
 .DS_Store
@@ -15,4 +24,5 @@ Thumbs.db
 .env
 .env.local
 
+# temporary
 classSearchResults.txt
