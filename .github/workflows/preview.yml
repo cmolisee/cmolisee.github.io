@@ -1,0 +1,91 @@
+name: Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-preview:
+    name: BUILD PREVIEW
+    runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: production
+      NODE_ENV: production
+      PREVIEW_BASEURL: /previews/pr-${{ github.event.pull_request.number }}
+    steps:
+      - name: CHECKOUT PR BRANCH
+        uses: actions/checkout@v6
+      - name: SET UP NODE
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: npm
+      - name: INSTALL NODE DEPENDENCIES
+        run: npm ci
+      - name: SET UP RUBY
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.9"
+          bundler-cache: true
+      - name: BUILD CSS
+        run: NODE_ENV=production npx postcss assets/css/main.css -o assets/css/main.built.css
+      - name: BUILD JEKYLL SITE
+        run: |
+          bundle exec jekyll build \
+            --baseurl "$PREVIEW_BASEURL"
+            --destination _site
+      - name: UPLOAD PREVIEW ARTIFACT
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-site-pr-${{ github.event.pull_request.number }}
+          path: _site/
+          retention-days: 7
+  deploy-preview:
+    name: DEPLOY PREVIEW
+    runs-on: ubuntu-latest
+    needs: build-preview
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      REPO_NAME: ${{ github.event.repository.name }}
+      OWNER: ${{ github.repository_owner }}
+    steps:
+      - name: CHECKOUT PR BRANCH
+        uses: actions/checkout@v6
+      - name: DOWNLOARD ARTIFACTS
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-site-pr-${{ github.event.pull_request.number }}
+          path: _site/
+      - name: DEPLOY TO GH-PAGES (PREVIEW SUBFOLDER)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site
+          target-folder: previews/pr-${{ env.PR_NUMBER }}
+          clean: true
+          clean-exclude: |
+            previews/
+            index.html
+            404.html
+            assets/
+      - name: COMMENT PREVIEW URL ON PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: preview-link
+          message: |
+            ## Preview Deployment
+
+            Your changes are live at:
+            **https://${{ env.OWNER }}.github.io/${{ env.REPO_NAME }}/previews/pr-${{ env.PR_NUMBER }}/**
+
+            | | |
+            |---|---|
+            | **PR** | #${{ env.PR_NUMBER }} |
+            | **Commit** | '${{ github.event.pull_request.head.sha }}' |
+            | **Expires** | 7 days after last push |
+
+            > This comment updates automatically on each push to this PR.
