@@ -49,7 +49,7 @@ jobs:
       - name: CHECK FORMATTING
         run: npm run format:check
       - name: CHECK MARKDOWN FORMATTING
-        run: npm run format:md -- --check
+        run: npm run format:md:check
   lint:
     name: LINT
     runs-on: ubuntu-latest

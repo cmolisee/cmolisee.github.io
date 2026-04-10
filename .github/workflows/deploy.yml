@@ -41,7 +41,9 @@ jobs:
       - name: CONFIGURE PAGES
         uses: actions/configure-pages@v5
       - name: BUILD CSS
-        run: NODE_ENV=production npx postcss assets/css/main.css -o assets/css/main.built.css
+        run: NODE_ENV=production npx postcss assets/_css/main.css -o assets/css/main.css
+      - name: BUILD TS
+        run: npx esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --minify
       - name: BUILD JEKYLL SITE
         run: bundle exec jekyll build --destination _site
       - name: UPLOAD PAGES ARTIFACT

@@ -1,8 +1,9 @@
+import globals from "globals";
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
-import importPlugin from "eslint-plugin-import";
+// import importPlugin from "eslint-plugin-import";
 
 export default defineConfig([
   {
@@ -16,25 +17,14 @@ export default defineConfig([
     ],
   },
   js.configs.recommended,
-  ...tseslint.configs.recommended,
   {
-    plugins: { import: importPlugin },
-    settings: {
-      "import/resolver": { node: true, typescript: true },
-    },
-    rules: {
-      "import/no-duplicates": "error",
-      "import/no-unresolved": "off",
-      "import/oder": [
-        "warn",
-        {
-          groups: ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
-          "newlines-between": "always",
-          alphabetize: { order: "asc", caseInsensitive: true },
-        },
-      ],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
     },
   },
+  ...tseslint.configs.recommended,
   {
     files: ["**/*.{js,ts,tsx}"],
     rules: {
@@ -49,6 +39,25 @@ export default defineConfig([
       curly: ["error", "all"],
     },
   },
+  // TODO: update when import plugin supports eslint v10
+  // {
+  //   plugins: { import: importPlugin },
+  //   settings: {
+  //     "import/resolver": { node: true, typescript: true },
+  //   },
+  //   rules: {
+  //     "import/no-duplicates": "error",
+  //     "import/no-unresolved": "off",
+  //     "import/oder": [
+  //       "warn",
+  //       {
+  //         groups: ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
+  //         "newlines-between": "always",
+  //         alphabetize: { order: "asc", caseInsensitive: true },
+  //       },
+  //     ],
+  //   },
+  // },
   {
     files: ["**/*.js", "**/*.mjs"],
     rules: {

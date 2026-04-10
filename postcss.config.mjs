@@ -4,24 +4,28 @@ import postcssImport from "postcss-import";
 import postcssNesting from "postcss-nesting";
 import cssnano from "cssnano";
 
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import('postcss').ProcessOptions & { plugins: import('postcss').AcceptedPlugin[] }} */
 export default {
-  plugins: {
-    "postcss-import": postcssImport(),
-    "@tailwind/postcss": tailwindcss(),
-    "postcss-nesting": postcssNesting(),
-    autoprefixer: autoprefixer(),
-    ...(procecss.env.NODE_ENV === "production" && {
-      cssnano: cssnano({
-        preset: [
-          "default",
-          {
-            discardComments: { removeAll: true },
-            normalizeWhitespace: true,
-            minifySelectors: true,
-          },
-        ],
-      }),
-    }),
-  },
+  plugins: [
+    postcssImport(),
+    tailwindcss(),
+    postcssNesting(),
+    autoprefixer(),
+    ...(isProd
+      ? [
+          cssnano({
+            preset: [
+              "default",
+              {
+                discardComments: { removeAll: true },
+                normalizeWhitespace: true,
+                minifySelectors: true,
+              },
+            ],
+          }),
+        ]
+      : []),
+  ],
 };

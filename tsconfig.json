@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "rootDir": "assets/_ts",
+    "outDir": "assets/js",
     "target": "es2020",
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -16,6 +18,6 @@
     "declarationMap": true,
     "sourceMap": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "_scripts/**/*.ts"],
+  "include": ["assets/_ts/**/*.ts", "asstes/_ts/**/*.tsx"],
   "exclude": ["node_modules", "vendor", "_site", "dist"]
 }

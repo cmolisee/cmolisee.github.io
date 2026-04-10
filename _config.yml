@@ -39,14 +39,17 @@ collections:
 
 # Exclude from build
 exclude:
+  - assets/_css/
+  - assets/_ts/
   - node_modules/
+  - vendor/bundle/
   - package.json
   - package-lock.json
-  - tailwind.config.js
-  - postcss.config.js
-  - .eslintrc.js
-  - .prettierrc
-  - .htmlhintrc
+  - "*.config.mjs"
+  - "*.config.js"
+  - tsconfig.json
+  - .prettierignore
+  - markdownlint-cli2.mjs
   - "*.sh"
   - scripts/
   - Gemfile
@@ -57,7 +60,8 @@ exclude:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-postcss
+  - jekyll-postcss-v2
+  - jekyll-tsc
 
 # Navigation — sidebar menu
 nav:

@@ -13,8 +13,9 @@ vendor/bundle/
 
 # artifacts
 dist/
-assets/js/*.js
-assets/js/*.js.map
+assets/css/main.css
+assets/js/main.js
+assets/js/main.js.map
 
 # OS
 .DS_Store

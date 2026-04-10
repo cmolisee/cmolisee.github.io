@@ -17,16 +17,16 @@ Posts are named using the format `YYYY-MM-DD-title.md` and automatically picked 
 
 Each post supports the following front matter fields:
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `layout` | Yes | Always `blog` for posts |
-| `title` | Yes | Post title |
-| `date` | Yes | Publication date |
-| `author` | No | Author name |
-| `read_time` | No | Estimated read time in minutes |
-| `tags` | No | Array of tag strings |
-| `image` | No | Path to hero image |
-| `image_alt` | No | Alt text for hero image |
+| Field       | Required | Description                    |
+| ----------- | -------- | ------------------------------ |
+| `layout`    | Yes      | Always `blog` for posts        |
+| `title`     | Yes      | Post title                     |
+| `date`      | Yes      | Publication date               |
+| `author`    | No       | Author name                    |
+| `read_time` | No       | Estimated read time in minutes |
+| `tags`      | No       | Array of tag strings           |
+| `image`     | No       | Path to hero image             |
+| `image_alt` | No       | Alt text for hero image        |
 
 ## Writing content
 

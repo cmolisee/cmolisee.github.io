@@ -25,9 +25,15 @@ export default {
     "declaration-block-no-redundant-longhand-properties": null,
     "alpha-value-notation": ["percentage", { exceptProperties: ["opacity"] }],
     "selector-class-pattern": [
-      "^([a-z][a-z0-9]*)(-[a-z0-9]*$",
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
       { message: "Expected calss selector to be kebab-case" },
     ],
   },
-  ignoreFiles: ["_site/**", ".jekyll-cache/**", "node_modules/**", "**/*.min.css"],
+  ignoreFiles: [
+    "_site/**",
+    "assets/css/main.css",
+    ".jekyll-cache/**",
+    "node_modules/**",
+    "**/*.min.css",
+  ],
 };
