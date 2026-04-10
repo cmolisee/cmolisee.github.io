@@ -23,7 +23,7 @@ jobs:
       - name: INSTALL NODE DEPENDENCIES
         run: npm ci
       - name: CACHE NODE_MODULES
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: node-modules-${{ runner.os }}-${{ hashFiles('pakcage-lock.json') }}
@@ -41,10 +41,10 @@ jobs:
           node-version: "lts/*"
           cache: "npm"
       - name: RESTORE NODE_MODULES
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('pakcage-lock.json') }}
       - name: CHECK FORMATTING
         run: npm run format:check
       - name: CHECK MARKDOWN FORMATTING
@@ -62,10 +62,10 @@ jobs:
           node-version: "lts/*"
           cache: "npm"
       - name: RESTORE NODE_MODULES
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('pakcage-lock.json') }}
       - name: LINT JS / TS / TSX
         run: npm run lint
       - name: LINT CSS
