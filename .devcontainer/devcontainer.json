@@ -42,7 +42,8 @@
         "shopify.ruby-lsp",
         "github.vscode-github-actions",
         "eamodio.gitlens",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "naumovs.color-highlight": {}
       ],
       "settings": {
         "editor.formatOnSave": true,

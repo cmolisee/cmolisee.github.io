@@ -3,7 +3,7 @@ const tailwindAtRules = [
   "source",
   "utility",
   "variant",
-  "custom-cariant",
+  "custom-variant",
   "tailwind",
   "apply",
   "layer",

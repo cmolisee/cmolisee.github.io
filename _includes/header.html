@@ -1,5 +1,5 @@
 <header
-  class="sticky top-0 z-40 flex h-14 items-center border-b border-gray-200 bg-white/90 px-4 backdrop-blur dark:border-gray-800 dark:bg-gray-950/90"
+  class="sticky top-0 z-raised flex h-14 items-center border-b border-border bg-surface-raised px-4"
 >
   <!-- Mobile: hamburger button -->
   <button
@@ -8,7 +8,7 @@
     aria-label="Open navigation"
     aria-expanded="false"
     aria-controls="sidebar"
-    class="mr-3 rounded-md p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 lg:hidden dark:hover:bg-gray-800 dark:hover:text-gray-100"
+    class="mr-3 rounded-md p-1.5 text-text-secondary transition-colors hover:bg-surface lg:hidden flex items-center justify-center hover:text-text-primary"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,10 +25,10 @@
   <!-- Site logo / name -->
   <a
     href="{{ '/' | relative_url }}"
-    class="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
+    class="flex items-center gap-2 text-sm font-semibold text-text-secondary"
   >
     <span
-      class="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600 text-xs font-bold text-white"
+      class="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600 text-xs font-bold text-text-primary"
     >
       {{ site.title | slice: 0 }}
     </span>
@@ -43,13 +43,13 @@
     <!-- Top-level links (optional, extend as needed) -->
     <a
       href="{{ '/docs/introduction/' | relative_url }}"
-      class="hidden rounded-md px-3 py-1.5 text-sm text-gray-600 transition-colors hover:text-gray-900 sm:inline-flex dark:text-gray-400 dark:hover:text-white"
+      class="rounded-md px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-surface hover:underline"
     >
       Docs
     </a>
     <a
       href="{{ '/blog/' | relative_url }}"
-      class="hidden rounded-md px-3 py-1.5 text-sm text-gray-600 transition-colors hover:text-gray-900 sm:inline-flex dark:text-gray-400 dark:hover:text-white"
+      class="rounded-md px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-surface flex items-center justify-center hover:text-text-primary hover:underline"
     >
       Blog
     </a>
@@ -60,7 +60,7 @@
       target="_blank"
       rel="noopener noreferrer"
       aria-label="GitHub"
-      class="rounded-md p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+      class="rounded-md p-1.5 text-gray-500 transition-colors text-text-secondary hover:text-text-primary hover:bg-surface"
     >
       <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
         <path
@@ -76,7 +76,7 @@
       data-theme-toggle
       type="button"
       aria-label="Toggle dark mode"
-      class="rounded-md p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+      class="rounded-md p-1.5 text-text-secondary transition-colors flex items-center justify-center hover:text-text-primary hover:text-text-primary hover:bg-surface"
     >
       <!-- Moon icon — shown in light mode -->
       <svg
