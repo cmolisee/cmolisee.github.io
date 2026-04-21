@@ -46,7 +46,7 @@ layout: default
     <!-- Prose content -->
     <article
       id="doc-content"
-      class="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-brand-400 prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-img:rounded-lg"
+      class="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline dark:prose-a:text-brand-400 prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-img:rounded-lg"
     >
       {{ content }}
     </article>
@@ -58,7 +58,7 @@ layout: default
       {% if page.previous %}
         <a
           href="{{ page.previous.url | relative_url }}"
-          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-600 dark:text-gray-400 dark:hover:text-brand-400"
+          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-accent dark:text-gray-400 dark:hover:text-brand-400"
         >
           <svg
             class="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
@@ -77,7 +77,7 @@ layout: default
       {% if page.next %}
         <a
           href="{{ page.next.url | relative_url }}"
-          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-600 dark:text-gray-400 dark:hover:text-brand-400"
+          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-accent dark:text-gray-400 dark:hover:text-brand-400"
         >
           {{ page.next.title }}
           <svg
