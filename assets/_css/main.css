@@ -524,8 +524,8 @@
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;
-  background-color: var(--color-brand-800);
-  color: var(--color-text-primary);
+  background-color: var(--color-brand-600);
+  color: var(--color-surface);
 }
 
 .panel {

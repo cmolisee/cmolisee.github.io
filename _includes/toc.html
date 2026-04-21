@@ -1,5 +1,5 @@
-<nav id="toc" aria-label="On this page" class="sticky top-20 hidden w-48 shrink-0 xl:block">
-  <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-600">On this page</p>
+<nav id="toc" aria-label="On this page" class="sticky z-raised top-32 self-start hidden w-48 shrink-0 xl:block">
+  <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-text-primary">On this page</p>
   <ul id="toc-list" class="space-y-1 text-sm"></ul>
 </nav>
 
@@ -26,8 +26,8 @@
       a.textContent = h.textContent;
       a.className =
         h.tagName === 'H3'
-          ? 'block pl-3 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors'
-          : 'block text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors font-medium';
+          ? 'block pl-3 text-text-secondary hover:text-gray-700 transition-colors'
+          : 'block text-text-secondary hover:text-text-primary transition-colors font-medium';
       li.appendChild(a);
       list.appendChild(li);
     });
@@ -40,12 +40,12 @@
           const link = list.querySelector(`a[href="#${id}"]`);
           if (!link) return;
           if (entry.isIntersecting) {
-            list.querySelectorAll('a').forEach((a) => a.classList.remove('text-brand-600', 'dark:text-brand-400'));
-            link.classList.add('text-brand-600', 'dark:text-brand-400');
+            list.querySelectorAll('a').forEach((a) => a.classList.remove('text-brand-600!'));
+            link.classList.add('text-brand-600!');
           }
         });
       },
-      { rootMargin: '0px 0px -60% 0px' }
+      { rootMargin: '20% 0px 0px 0px' }
     );
 
     headings.forEach((h) => observer.observe(h));
