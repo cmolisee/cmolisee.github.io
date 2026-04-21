@@ -8,7 +8,7 @@
     aria-label="Open navigation"
     aria-expanded="false"
     aria-controls="sidebar"
-    class="mr-3 rounded-md p-1.5 text-text-secondary transition-colors hover:bg-surface lg:hidden flex items-center justify-center hover:text-text-primary"
+    class="btn-link mr-3 p-1.5 lg:hidden"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,14 +25,14 @@
   <!-- Site logo / name -->
   <a
     href="{{ '/' | relative_url }}"
-    class="flex items-center gap-2 text-sm font-semibold text-text-secondary"
+    class="group btn-link gap-2 text-sm font-semibold pr-2"
   >
     <span
       class="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600 text-xs font-bold text-text-primary"
     >
       {{ site.title | slice: 0 }}
     </span>
-    <span>{{ site.title }}</span>
+    <span class="group-hover:underline">{{ site.title }}</span>
   </a>
 
   <!-- Spacer -->
@@ -43,13 +43,13 @@
     <!-- Top-level links (optional, extend as needed) -->
     <a
       href="{{ '/docs/introduction/' | relative_url }}"
-      class="rounded-md px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-surface hover:underline"
+      class="btn-link px-3 py-1.5 text-sm hover:underline"
     >
       Docs
     </a>
     <a
       href="{{ '/blog/' | relative_url }}"
-      class="rounded-md px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-surface flex items-center justify-center hover:text-text-primary hover:underline"
+      class="btn-link px-3 py-1.5 text-sm hover:underline"
     >
       Blog
     </a>
@@ -60,7 +60,7 @@
       target="_blank"
       rel="noopener noreferrer"
       aria-label="GitHub"
-      class="rounded-md p-1.5 text-gray-500 transition-colors text-text-secondary hover:text-text-primary hover:bg-surface"
+      class="btn-link p-1.5"
     >
       <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
         <path
@@ -76,7 +76,7 @@
       data-theme-toggle
       type="button"
       aria-label="Toggle dark mode"
-      class="rounded-md p-1.5 text-text-secondary transition-colors flex items-center justify-center hover:text-text-primary hover:text-text-primary hover:bg-surface"
+      class="btn-link p-1.5"
     >
       <!-- Moon icon — shown in light mode -->
       <svg
