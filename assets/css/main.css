@@ -1356,6 +1356,16 @@
     }
   }
   @media (hover: hover) {
+    .hover\:text-text-primary:hover {
+      color: var(--color-text-primary);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-text-secondary:hover {
+      color: var(--color-text-secondary);
+    }
+  }
+  @media (hover: hover) {
     .hover\:underline:hover {
       text-decoration-line: underline;
     }
