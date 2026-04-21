@@ -31,23 +31,5 @@
       li.appendChild(a);
       list.appendChild(li);
     });
-
-    // Highlight active heading on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.getAttribute('id');
-          const link = list.querySelector(`a[href="#${id}"]`);
-          if (!link) return;
-          if (entry.isIntersecting) {
-            list.querySelectorAll('a').forEach((a) => a.classList.remove('text-brand-600!'));
-            link.classList.add('text-brand-600!');
-          }
-        });
-      },
-      { rootMargin: '20% 0px 0px 0px' }
-    );
-
-    headings.forEach((h) => observer.observe(h));
   });
 </script>

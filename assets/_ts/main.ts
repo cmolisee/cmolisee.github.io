@@ -2,7 +2,6 @@ type themeType = "dark" | "light";
 
 const html = document.documentElement;
 
-// Apply theme to <html> element and persist to localStorage
 function applyTheme(theme: themeType): void {
   const func = theme === "dark" ? "add" : "remove";
   html.classList[func]("dark");
@@ -10,7 +9,6 @@ function applyTheme(theme: themeType): void {
   updateThemeIcons(theme);
 }
 
-// Sync the sun/moon icon visibility with the current theme
 function updateThemeIcons(theme: themeType): void {
   document.querySelectorAll("[data-icon-sun]").forEach((el) => {
     el.classList.toggle("hidden", theme !== "dark");
@@ -20,7 +18,6 @@ function updateThemeIcons(theme: themeType): void {
   });
 }
 
-// Return the resolved theme from storage or system preference
 function resolvedTheme(): themeType {
   const stored = localStorage.getItem("mode");
   if (stored === "dark" || stored === "light") {
@@ -29,7 +26,6 @@ function resolvedTheme(): themeType {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-// initialize after paint
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   const sidebarOverlay = document.getElementById("sidebar-overlay");
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!sidebar) return;
 
-  // Bind toggle buttons
   document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const next = html.classList.contains("dark") ? "light" : "dark";
@@ -67,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn?.addEventListener("click", closeSidebar);
   sidebarOverlay?.addEventListener("click", closeSidebar);
 
-  // Close sidebar when viewport goes to desktop
   window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => {
     if (e.matches) {
       closeSidebar();
@@ -83,5 +77,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// initialize before paint
 applyTheme(resolvedTheme());

@@ -10,7 +10,7 @@ A minimal, production-ready Jekyll template with:
 - 📄 **Doc layout** — breadcrumbs, prev/next, sticky table of contents
 - 📝 **Blog layout** — tags, hero image, author meta, prev/next navigation
 - 🧩 **`_includes/`** — reusable components (`head`, `header`, `sidebar`, `footer`, `toc`,
-  `blog-card`)
+  `card`)
 
 ---
 
@@ -74,7 +74,7 @@ This updates `version` in both `_config.yml` and `package.json` to today's date.
 │   ├── sidebar.html
 │   ├── footer.html
 │   ├── toc.html
-│   └── blog-card.html
+│   └── card.html
 ├── _layouts/
 │   ├── default.html     # 20/80 sidebar layout
 │   ├── doc.html         # Documentation layout

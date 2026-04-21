@@ -1,0 +1,36 @@
+<article
+  class="group rounded-xl border border-border bg-surface p-5 transition-colors hover:border-brand-600"
+>
+  <a href="{{ include.content.url | relative_url }}" class="block">
+    <!-- Title -->
+    <h2
+      class="mb-2 text-lg font-semibold text-text-primary transition-colors group-hover:text-brand-600"
+    >
+      {{ include.content.title }}
+    </h2>
+
+    <!-- Tags -->
+    {% if include.content.tags and include.content.tags.size > 0 %}
+      <div class="mb-3 flex flex-wrap gap-1.5">
+        {% for tag in include.content.tags limit: 3 %}
+          <span class="tag-pill">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-xs text-text-secondary">
+      <time datetime="{{ include.content.date | date_to_xmlschema }}">
+        {{ include.content.date | date: '%B %-d, %Y' }}
+      </time>
+      {% if include.content.author %}
+        <span>&middot;</span>
+        <span>{{ include.content.author }}</span>
+      {% endif %}
+      {% if include.content.read_time %}
+        <span>&middot;</span>
+        <span>{{ include.content.read_time }} min read</span>
+      {% endif %}
+    </div>
+  </a>
+</article>

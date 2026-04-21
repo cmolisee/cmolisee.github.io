@@ -32,7 +32,7 @@ point for documentation sites and blogs — no SCSS, no heavy frameworks.
 │   ├── sidebar.html
 │   ├── footer.html
 │   ├── toc.html
-│   └── blog-card.html
+│   └── card.html
 ├── _layouts/
 │   ├── default.html     # Base layout (sidebar + header)
 │   ├── doc.html         # Documentation post layout

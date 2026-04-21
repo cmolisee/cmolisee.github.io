@@ -65,8 +65,10 @@ plugins:
 
 # Navigation — sidebar menu
 nav:
-  - title: "Getting Started"
+  - title: "Docs"
     links:
+      - label: "All Docs"
+        url: "/docs/"
       - label: "Introduction"
         url: "/docs/introduction/"
       - label: "Installation"
