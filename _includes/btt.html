@@ -1,33 +1,6 @@
-<nav
-  class="my-4 mx-auto"
-  role="navigation"
-  aria-label="A to Z Navigation"
->
-  <ol class="flex gap-4 flex-wrap justify-center" role="list">
-    {% assign alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-    {% assign chars = alphabet | split: '' %}
-    {% for char in chars %}
-      <li class="underline hover:no-underline hover:text-brand-accent px-1">
-        <a
-          class="text-lg"
-          href="#{{ char }}"
-        >
-          {{- char -}}
-        </a>
-      </li>
-    {% endfor %}
-    <li class="underline hover:no-underline hover:text-brand-accent px-1">
-      <a
-        class="text-lg"
-        href="#MISC"
-        >MISC</a
-      >
-    </li>
-  </ol>
-</nav>
 <div
   id="back-to-top"
-  class="fixed text-text-secondary bottom-12 right-1/2 md:right-4 hidden cursor-pointer"
+  class="fixed text-text-secondary/40 bottom-8 right-8 hidden cursor-pointer"
 >
   <svg
     stroke-width="0"
@@ -46,7 +19,10 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const btt = document.getElementById('back-to-top');
+    const svg = btt.querySelector('svg');
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    btt.addEventListener('mouseenter', () => (svg.style.fill = 'var(--color-brand-accent)'));
+    btt.addEventListener('mouseleave', () => (svg.style.fill = 'currentColor'));
     window.addEventListener(
       'scroll',
       function () {

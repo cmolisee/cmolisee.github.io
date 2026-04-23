@@ -8,7 +8,7 @@
 <!-- Sidebar panel -->
 <aside
   id="sidebar"
-  class="fixed bg-surface-raised inset-y-0 left-0 z-raised flex w-64 -translate-x-full flex-col border-r border-surface sidebar-transition lg:static lg:w-1/5 lg:translate-x-0 lg:min-w-[200px]"
+  class="fixed bg-surface-raised inset-y-0 left-0 z-modal lg:z-raised flex w-64 -translate-x-full flex-col border-r border-surface sidebar-transition lg:static lg:w-1/5 lg:translate-x-0 lg:min-w-[200px]"
   aria-label="Navigation"
 >
   <!-- Mobile: sidebar header with close button -->
@@ -36,7 +36,7 @@
   </div>
 
   <!-- Nav content — scrollable -->
-  <nav class="flex-1 overflow-y-auto px-3 pb-6 pt-4 text-sm">
+  <nav class="flex flex-col overflow-y-auto px-3 pb-6 pt-4 text-sm">
     {% for section in site.nav %}
       <p class="nav-section-title">{{ section.title }}</p>
       <ul class="space-y-0.5">
@@ -49,8 +49,14 @@
     {% endfor %}
   </nav>
 
+  {% assign is_doc = page.url contains '/docs/' and page.url != '/docs/' %}
+  {% assign is_blog = page.url contains '/blog/' and page.url != '/blog/' %}
+  {% if is_doc or is_blog %}
+    {% include toc.html %}
+  {% endif %}
+
   <!-- Sidebar footer — version badge -->
-  <div class="shrink-0 border-t border-surface px-4 py-2.5">
+  <div class="shrink-0 border-t border-surface px-4 py-2.5 mt-auto">
     <span class="text-xs text-text-secondary">v{{ site.version }}</span>
   </div>
 </aside>

@@ -432,27 +432,27 @@
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.z-base {
+@utility z-base {
   z-index: 0;
 }
 
-.z-raised {
+@utility z-raised {
   z-index: 10;
 }
 
-.z-overlay {
+@utility z-overlay {
   z-index: 20;
 }
 
-.z-modal {
+@utility z-modal {
   z-index: 30;
 }
 
-.z-toast {
+@utility z-toast {
   z-index: 40;
 }
 
-.z-tooltip {
+@utility z-tooltip {
   z-index: 50;
 }
 
@@ -613,4 +613,9 @@
 .panel-note .panel-icon,
 .panel-note .panel-title {
   color: var(--color-note-icon);
+}
+
+/* fix to ensure anchor links scroll to include the element the anchor is attached to */
+[id] {
+  scroll-margin-top: 4rem;
 }

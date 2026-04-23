@@ -67,13 +67,9 @@ plugins:
 nav:
   - title: "Docs"
     links:
-      - label: "All Docs"
+      - label: "All Docs →"
         url: "/docs/"
-      - label: "Introduction"
-        url: "/docs/introduction/"
-      - label: "Installation"
-        url: "/docs/installation/"
   - title: "Blog"
     links:
-      - label: "All Posts"
+      - label: "All Posts →"
         url: "/blog/"

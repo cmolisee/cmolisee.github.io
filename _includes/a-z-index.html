@@ -1,0 +1,27 @@
+<nav
+  class="my-4 mx-auto"
+  role="navigation"
+  aria-label="A to Z Navigation"
+>
+  <ol class="flex gap-4 flex-wrap justify-center" role="list">
+    {% assign alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+    {% assign chars = alphabet | split: '' %}
+    {% for char in chars %}
+      <li class="underline hover:no-underline hover:text-brand-accent px-1">
+        <a
+          class="text-lg"
+          href="#{{ char }}"
+        >
+          {{- char -}}
+        </a>
+      </li>
+    {% endfor %}
+    <li class="underline hover:no-underline hover:text-brand-accent px-1">
+      <a
+        class="text-lg"
+        href="#MISC"
+        >MISC</a
+      >
+    </li>
+  </ol>
+</nav>
