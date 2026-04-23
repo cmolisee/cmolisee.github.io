@@ -6,29 +6,29 @@ layout: default
   <!-- Doc content -->
   <div class="min-w-0 flex-1">
     <!-- Breadcrumb -->
-    <nav class="mb-6 flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-600">
-      <a href="{{ '/' | relative_url }}" class="hover:text-gray-700 dark:hover:text-gray-300"> Home </a>
+    <nav class="mb-6 flex items-center gap-1.5 text-xs text-text-secondary">
+      <a href="{{ '/' | relative_url }}" class="hover:text-text-secondary"> Home </a>
       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
       </svg>
-      <a href="{{ '/docs/' | relative_url }}" class="hover:text-gray-700 dark:hover:text-gray-300"> Docs </a>
+      <a href="{{ '/docs/' | relative_url }}" class="hover:text-text-secondary"> Docs </a>
       {% if page.title %}
         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
-        <span class="text-gray-600 dark:text-gray-400">{{ page.title }}</span>
+        <span class="text-text-secondary">{{ page.title }}</span>
       {% endif %}
     </nav>
 
     <!-- Page header -->
-    <header class="mb-8 border-b border-gray-200 pb-6 dark:border-gray-800">
-      <h1 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <header class="mb-8 border-b border-border pb-6">
+      <h1 class="mb-2 text-3xl font-bold tracking-tight text-text-primary">
         {{ page.title }}
       </h1>
       {% if page.description %}
-        <p class="text-base text-gray-500 dark:text-gray-400">{{ page.description }}</p>
+        <p class="text-base text-text-primary">{{ page.description }}</p>
       {% endif %}
-      <div class="mt-3 flex flex-wrap items-center gap-3 text-xs text-gray-400 dark:text-gray-600">
+      <div class="mt-3 flex flex-wrap items-center gap-3 text-xs text-text-secondary">
         {% if page.date %}
           <span>
             Updated
@@ -38,7 +38,7 @@ layout: default
           </span>
         {% endif %}
         {% if page.version %}
-          <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono dark:bg-gray-800"> v{{ page.version }} </span>
+          <span class="rounded bg-surface px-1.5 py-0.5 font-mono"> v{{ page.version }} </span>
         {% endif %}
       </div>
     </header>
@@ -46,19 +46,19 @@ layout: default
     <!-- Prose content -->
     <article
       id="doc-content"
-      class="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline dark:prose-a:text-brand-400 prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-img:rounded-lg"
+      class="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-border prose-img:rounded-lg"
     >
       {{ content }}
     </article>
 
     <!-- Prev / Next navigation -->
     <nav
-      class="mt-12 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-800"
+      class="mt-12 flex items-center justify-between border-t border-border pt-6"
     >
       {% if page.previous %}
         <a
           href="{{ page.previous.url | relative_url }}"
-          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-accent dark:text-gray-400 dark:hover:text-brand-400"
+          class="group flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-brand-accent"
         >
           <svg
             class="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
@@ -77,7 +77,7 @@ layout: default
       {% if page.next %}
         <a
           href="{{ page.next.url | relative_url }}"
-          class="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-accent dark:text-gray-400 dark:hover:text-brand-400"
+          class="group flex items-center gap-2 text-sm font-medium text-text-primary hover:text-brand-accent"
         >
           {{ page.next.title }}
           <svg

@@ -1305,6 +1305,11 @@
     }
   }
   @media (hover: hover) {
+    .hover\:text-text-secondary:hover {
+      color: var(--color-text-secondary);
+    }
+  }
+  @media (hover: hover) {
     .hover\:no-underline:hover {
       text-decoration-line: none;
     }
@@ -1384,6 +1389,9 @@
   }
   .dark\:text-gray-600:where(*.dark,.dark *) {
     color: var(--color-gray-600);
+  }
+  .dark\:text-text-secondary:where(*.dark,.dark *) {
+    color: var(--color-text-secondary);
   }
   .dark\:text-white:where(*.dark,.dark *) {
     color: var(--color-white);
