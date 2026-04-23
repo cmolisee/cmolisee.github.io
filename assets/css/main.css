@@ -5,16 +5,8 @@
   :root, :host {
     --font-sans: "IBM Plex Mono", "Geist Mono", "Commit Mono", ui-monospace, monospace;
     --font-mono: "IBM Plex Mono", "Geist Mono", "Cascadia Code", ui-monospace, monospace;
-    --color-gray-100: oklch(96.7% 0.003 264.542);
-    --color-gray-200: oklch(92.8% 0.006 264.531);
-    --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
-    --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
-    --color-gray-900: oklch(21% 0.034 264.665);
-    --color-white: #fff;
     --spacing: 0.25rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
@@ -919,6 +911,9 @@
   .shrink-0 {
     flex-shrink: 0;
   }
+  .basis-full {
+    flex-basis: 100%;
+  }
   .-translate-x-full {
     --tw-translate-x: -100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -955,6 +950,9 @@
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
+  }
+  .gap-5 {
+    gap: calc(var(--spacing) * 5);
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
@@ -1028,17 +1026,11 @@
   .border-border {
     border-color: var(--color-border);
   }
-  .border-gray-200 {
-    border-color: var(--color-gray-200);
-  }
   .border-surface {
     border-color: var(--color-surface);
   }
   .bg-brand-accent {
     background-color: var(--color-brand-accent);
-  }
-  .bg-gray-100 {
-    background-color: var(--color-gray-100);
   }
   .bg-surface {
     background-color: var(--color-surface);
@@ -1185,15 +1177,6 @@
   .text-gray-400 {
     color: var(--color-gray-400);
   }
-  .text-gray-500 {
-    color: var(--color-gray-500);
-  }
-  .text-gray-600 {
-    color: var(--color-gray-600);
-  }
-  .text-gray-900 {
-    color: var(--color-gray-900);
-  }
   .text-surface {
     color: var(--color-surface);
   }
@@ -1280,11 +1263,6 @@
     }
   }
   @media (hover: hover) {
-    .hover\:border-brand-300:hover {
-      border-color: var(--color-brand-300);
-    }
-  }
-  @media (hover: hover) {
     .hover\:border-brand-accent:hover {
       border-color: var(--color-brand-accent);
     }
@@ -1292,11 +1270,6 @@
   @media (hover: hover) {
     .hover\:text-brand-accent:hover {
       color: var(--color-brand-accent);
-    }
-  }
-  @media (hover: hover) {
-    .hover\:text-gray-700:hover {
-      color: var(--color-gray-700);
     }
   }
   @media (hover: hover) {
@@ -1320,6 +1293,11 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:basis-full {
+      flex-basis: 100%;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1330,8 +1308,40 @@
     }
   }
   @media (width >= 48rem) {
+    .md\:basis-\[calc\(33\.333\%-\(20px\/3\)\)\] {
+      flex-basis: calc(33.333% - (20px / 3));
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:basis-\[calc\(33\.333\%-12px\)\] {
+      flex-basis: calc(33.333% - 12px);
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:basis-\[calc\(50\%-\(20px\/2\)\)\] {
+      flex-basis: calc(50% - (20px / 2));
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:basis-\[calc\(50\%-12px\)\] {
+      flex-basis: calc(50% - 12px);
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:basis-full {
+      flex-basis: 100%;
+    }
+  }
+  @media (width >= 48rem) {
     .md\:px-10 {
       padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+  @media (width >= 40rem) {
+    @media (width >= 48rem) {
+      .sm\:md\:basis-\[calc\(50\%-12px\)\] {
+        flex-basis: calc(50% - 12px);
+      }
     }
   }
   @media (width >= 64rem) {
@@ -1365,6 +1375,11 @@
     }
   }
   @media (width >= 64rem) {
+    .lg\:basis-\[calc\(33\.333\%-12px\)\] {
+      flex-basis: calc(33.333% - 12px);
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:translate-x-0 {
       --tw-translate-x: calc(var(--spacing) * 0);
       translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -1375,26 +1390,11 @@
       display: block;
     }
   }
-  .dark\:border-gray-800:where(*.dark,.dark *) {
-    border-color: var(--color-gray-800);
-  }
-  .dark\:bg-gray-800:where(*.dark,.dark *) {
-    background-color: var(--color-gray-800);
-  }
   .dark\:text-brand-accent:where(*.dark,.dark *) {
     color: var(--color-brand-accent);
   }
-  .dark\:text-gray-400:where(*.dark,.dark *) {
-    color: var(--color-gray-400);
-  }
   .dark\:text-gray-600:where(*.dark,.dark *) {
     color: var(--color-gray-600);
-  }
-  .dark\:text-text-secondary:where(*.dark,.dark *) {
-    color: var(--color-text-secondary);
-  }
-  .dark\:text-white:where(*.dark,.dark *) {
-    color: var(--color-white);
   }
   .dark\:prose-invert:where(*.dark,.dark *) {
     --tw-prose-body: var(--tw-prose-invert-body);
@@ -1416,26 +1416,6 @@
     --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
     --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
   }
-  @media (hover: hover) {
-    .dark\:group-hover\:text-brand-400:where(*.dark,.dark *):is(:where(.group):hover *) {
-      color: var(--color-brand-400);
-    }
-  }
-  @media (hover: hover) {
-    .dark\:hover\:border-brand-700:where(*.dark,.dark *):hover {
-      border-color: var(--color-brand-700);
-    }
-  }
-  @media (hover: hover) {
-    .dark\:hover\:text-brand-400:where(*.dark,.dark *):hover {
-      color: var(--color-brand-400);
-    }
-  }
-  @media (hover: hover) {
-    .dark\:hover\:text-gray-300:where(*.dark,.dark *):hover {
-      color: var(--color-gray-300);
-    }
-  }
   .prose-headings\:font-semibold :is(:where(h1,h2,h3,h4,h5,h6,th):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -1455,9 +1435,6 @@
       text-decoration-line: underline;
     }
   }
-  .dark\:prose-a\:text-brand-400:where(*.dark,.dark *) :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-    color: var(--color-brand-400);
-  }
   .prose-code\:font-mono :is(:where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     font-family: var(--font-mono);
   }
@@ -1474,12 +1451,6 @@
   }
   .prose-pre\:border-border :is(:where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     border-color: var(--color-border);
-  }
-  .prose-pre\:border-gray-200 :is(:where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-    border-color: var(--color-gray-200);
-  }
-  .dark\:prose-pre\:border-gray-800:where(*.dark,.dark *) :is(:where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-    border-color: var(--color-gray-800);
   }
   .prose-img\:rounded-lg :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     border-radius: var(--radius-lg);

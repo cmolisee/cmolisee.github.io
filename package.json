@@ -11,7 +11,7 @@
     "build:ts:prod": "esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --minify",
     "build:ts": "esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --sourcemap",
     "build": "npm run build:css:prod && npm run build:ts:prod && npm run build:jekyll:prod",
-    "dev": "npm run build:css && npm run build:ts && concurrently --names \"css,ts,jekyll\" --prefix-colors \"cyan,yellow,magenta\" \"npm run watch:css\" \"npm run watch:ts\" \"npm run watch:jekyll\"",
+    "dev": "npm run build:jekyll && npm run build:css && npm run build:ts && concurrently --names \"css,ts,jekyll\" --prefix-colors \"cyan,yellow,magenta\" \"npm run watch:css\" \"npm run watch:ts\" \"npm run watch:jekyll\"",
     "format:check": "prettier --check \"**/*.{js,ts,tsx,html,css}\"",
     "format:md:check": "prettier --check \"**/*.md\"",
     "format:md": "prettier --write \"**/*.md\"",
@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "prepare": "husky",
     "watch:css": "postcss assets/_css/main.css -o assets/css/main.css --watch --trace-deprecation",
-    "watch:jekyll": "bundle exec jekyll serve --livereload --incremental --force_polling",
+    "watch:jekyll": "bundle exec jekyll serve --incremental",
     "watch:ts": "esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --sourcemap --watch"
   },
   "lint-staged": {

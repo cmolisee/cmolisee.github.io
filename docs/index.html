@@ -8,21 +8,36 @@ title: Docs
     <p class="text-text-secondary">Notes and Knowledge.</p>
   </header>
 
-  <article>
-    {% include index-nav.html %}
+  {% assign grouped_docs = site.docs | group_by_exp: 'doc', 'doc.title | slice: 0, 1 | upcase' | sort: 'name' %}
+  {% if grouped_docs.size > 5 %}
+    {% assign indexed_container = 'flex gap-4 flex-wrap' %}
+    {% assign indexed_item = 'flex flex-col basis-full md:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-12px)]' %}
+  {% elsif grouped_docs.size > 3 %}
+    {% assign indexed_container = 'flex gap-4 flex-wrap' %}
+    {% assign indexed_item = 'flex flex-col basis-full md:basis-[calc(50%-12px)]' %}
+  {% else %}
+    {% assign indexed_container = 'flex gap-4 flex-wrap' %}
+    {% assign indexed_item = 'flex flex-col basis-full' %}
+  {% endif %}
+
+  {% include index-nav.html %}
+
+  <div class="{{ indexed_container }}">
     {% if site.docs.size > 0 %}
-      {% assign grouped_docs = site.docs | group_by_exp: 'doc', 'doc.title | slice: 0, 1 | upcase' | sort: 'name' %}
       {% for group in grouped_docs %}
-        {% if 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains group.name %}
-          <h2 id="{{group.name}}" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">
-            {{ group.name }}
-          </h2>
-        {% else %}
-          <h2 id="MISC" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">MISC</h2>
-        {% endif %}
-        {% for doc in group.items %}
-          {% include card.html content=doc %}
-        {% endfor %}
+        <div class="{{ indexed_item }}">
+          {% if 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains group.name %}
+            <h2 id="{{group.name}}" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">
+              {{ group.name }}
+            </h2>
+          {% else %}
+            <h2 id="MISC" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">MISC</h2>
+          {% endif %}
+
+          {% for doc in group.items %}
+            {% include card.html content=doc %}
+          {% endfor %}
+        </div>
       {% endfor %}
     {% else %}
       <p class="text-text-secondary">
@@ -31,5 +46,5 @@ title: Docs
         .
       </p>
     {% endif %}
-  </article>
+  </div>
 </div>
