@@ -4,21 +4,32 @@ title: Blog
 ---
 <div class="mx-auto">
   <header class="mb-10">
-    <h1 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Blog</h1>
-    <p class="text-gray-500 dark:text-gray-400">Thoughts, tutorials, and updates.</p>
+    <h1 class="mb-2 text-3xl font-bold tracking-tight text-text-primary">Blog</h1>
+    <p class="text-text-secondary">Thoughts, tutorials, and updates.</p>
   </header>
 
-  {% if site.posts.size > 0 %}
-    <div class="space-y-4">
-      {% for post in site.posts %}
-        {% include card.html content=post %}
+  <article>
+    {% include index-nav.html %}
+    {% if site.posts.size > 0 %}
+      {% assign grouped_posts = site.posts | group_by_exp: 'post', 'post.title | slice: 0, 1 | upcase' | sort: 'name' %}
+      {% for group in grouped_posts %}
+        {% if 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains group.name %}
+          <h2 id="{{group.name}}" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">
+            {{ group.name }}
+          </h2>
+        {% else %}
+          <h2 id="MISC" class="text-[xx-large] font-[bolder] m-2 border-b border-solid">MISC</h2>
+        {% endif %}
+        {% for post in group.items %}
+          {% include card.html content=post %}
+        {% endfor %}
       {% endfor %}
-    </div>
-  {% else %}
-    <p class="text-gray-500 dark:text-gray-400">
-      No posts yet. Add Markdown files to
-      <code>_posts/</code>
-      .
-    </p>
-  {% endif %}
+    {% else %}
+      <p class="text-text-secondary">
+        No posts yet. Add Markdown files to
+        <code>_posts/</code>
+        .
+      </p>
+    {% endif %}
+  </article>
 </div>

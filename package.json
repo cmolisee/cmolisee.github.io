@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "prepare": "husky",
     "watch:css": "postcss assets/_css/main.css -o assets/css/main.css --watch --trace-deprecation",
-    "watch:jekyll": "bundle exec jekyll serve --livereload --incremental",
+    "watch:jekyll": "bundle exec jekyll serve --livereload --incremental --force_polling",
     "watch:ts": "esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --sourcemap --watch"
   },
   "lint-staged": {

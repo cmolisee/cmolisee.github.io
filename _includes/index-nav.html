@@ -1,0 +1,62 @@
+<nav
+  class="my-4 mx-auto"
+  role="navigation"
+  aria-label="A to Z Navigation"
+>
+  <ol class="flex gap-4 flex-wrap justify-center" role="list">
+    {% assign alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+    {% assign chars = alphabet | split: '' %}
+    {% for char in chars %}
+      <li class="underline hover:no-underline hover:text-brand-accent px-1">
+        <a
+          class="text-lg"
+          href="#{{ char }}"
+        >
+          {{- char -}}
+        </a>
+      </li>
+    {% endfor %}
+    <li class="underline hover:no-underline hover:text-brand-accent px-1">
+      <a
+        class="text-lg"
+        href="#MISC"
+        >MISC</a
+      >
+    </li>
+  </ol>
+</nav>
+<div
+  id="back-to-top"
+  class="fixed text-text-secondary bottom-12 right-1/2 md:right-4 hidden cursor-pointer"
+>
+  <svg
+    stroke-width="0"
+    height="3rem"
+    width="3rem"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    color="currentColor"
+    style="overflow: visible;"
+  >
+    <path d="M6 4h12v2H6zm.707 11.707L11 11.414V20h2v-8.586l4.293 4.293 1.414-1.414L12 7.586l-6.707 6.707z"></path>
+  </svg>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btt = document.getElementById('back-to-top');
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (window.scrollY >= 200) {
+          btt.classList.remove('hidden');
+        } else {
+          btt.classList.add('hidden');
+        }
+      },
+      { passive: true }
+    );
+  });
+</script>
