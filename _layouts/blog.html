@@ -6,7 +6,7 @@ layout: default
   <!-- Back link -->
   <a
     href="{{ '/blog/' | relative_url }}"
-    class="mb-8 inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-brand-accent dark:text-gray-400 dark:hover:text-brand-400"
+    class="mb-8 inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-brand-accent"
   >
     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -26,13 +26,13 @@ layout: default
     {% endif %}
 
     <!-- Title -->
-    <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <h1 class="mb-4 text-4xl font-bold tracking-tight text-text-primary">
       {{ page.title }}
     </h1>
 
     <!-- Meta row -->
     <div
-      class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400"
+      class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-text-secondary"
     >
       {% if page.author %}
         <span class="flex items-center gap-1.5">
@@ -98,16 +98,16 @@ layout: default
 
   <!-- Article body -->
   <article
-    class="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline dark:prose-a:text-brand-400 prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-img:rounded-lg prose-img:shadow-md"
+    class="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-sm prose-pre:rounded-lg prose-pre:border prose-pre:border-border prose-img:rounded-lg prose-img:shadow-md"
   >
     {{ content }}
   </article>
 
   <!-- Post footer: tags + share hints -->
-  <footer class="mt-12 border-t border-gray-200 pt-6 dark:border-gray-800">
+  <footer class="mt-12 border-t border-border pt-6">
     {% if page.tags and page.tags.size > 0 %}
       <div class="mb-4 flex flex-wrap items-center gap-2 text-sm">
-        <span class="text-gray-500 dark:text-gray-400">Tagged:</span>
+        <span class="text-text-secondary">Tagged:</span>
         {% for tag in page.tags %}
           <span class="tag-pill">{{ tag }}</span>
         {% endfor %}
@@ -119,11 +119,11 @@ layout: default
       {% if page.previous.url %}
         <a
           href="{{ page.previous.url | relative_url }}"
-          class="group rounded-lg border border-gray-200 p-4 transition-colors hover:border-brand-300 dark:border-gray-800 dark:hover:border-brand-700"
+          class="group rounded-lg border border-border p-4 transition-colors hover:border-brand-accent"
         >
-          <p class="mb-1 text-xs text-gray-400 dark:text-gray-600">← Previous</p>
+          <p class="mb-1 text-xs text-text-secondary">← Previous</p>
           <p
-            class="text-sm font-medium text-gray-900 group-hover:text-brand-accent dark:text-white dark:group-hover:text-brand-400"
+            class="text-sm font-medium text-text-primary group-hover:text-brand-accent"
           >
             {{ page.previous.title }}
           </p>
@@ -134,11 +134,11 @@ layout: default
       {% if page.next.url %}
         <a
           href="{{ page.next.url | relative_url }}"
-          class="group rounded-lg border border-gray-200 p-4 text-right transition-colors hover:border-brand-300 dark:border-gray-800 dark:hover:border-brand-700"
+          class="group rounded-lg border border-border p-4 text-right transition-colors hover:border-brand-accent"
         >
           <p class="mb-1 text-xs text-gray-400 dark:text-gray-600">Next →</p>
           <p
-            class="text-sm font-medium text-gray-900 group-hover:text-brand-accent dark:text-white dark:group-hover:text-brand-400"
+            class="text-sm font-medium text-text-primary group-hover:text-brand-accent"
           >
             {{ page.next.title }}
           </p>
