@@ -10,9 +10,7 @@ tags:
 ---
 
 As a tech person I cannot own a home and not have some kind of home automation. My guide here is a review of the
-
 process that I specifically used. I have a life so I referenced the technologies documentation but also a variety of
-
 blogs and other guides:
 
 - [Home Assistant: Proxmox VE 8.4 Quick Start Guide][derek-seaman-proxmox-guid]
@@ -23,21 +21,15 @@ blogs and other guides:
 ## The NUC
 
 A NUC is essentially just a tiny PC. There are all sorts of NUCs on the market for all different purposes. A while
-
 ago I opted in for a Beelink NUC as it was cost effective and met my requirements for performance. Most of the
-
 community seems to recommend used dell OptiPlex or similar - the problem is that all these forums and communities are
-
 advertising them and they can be challenging to find.
 
 ## Step 1: Proxmox
 
 Proxmox is open source. It provides a lot of customization and we can virtualize/containerize anyting we want (e.g. HAOS,
-
 Jellyfin, PiHole, etc...). We can also infer from their download page and their products other interesting use cases. For this
-
 project our first step will be research and checking compatibility. At this time HAOS is on version - this is
-
 also where we will start [Proxmox Downloads][proxmox-downloads].
 
 - HA community says that proxmox 9.1 is supported.
@@ -66,16 +58,11 @@ _Before you start it is best to connect to internet via ethernet_
 _Before you start it is best to connect to internet via ethernet_
 
 If you already have proxmox installed you can upgrade with the [8 to 9][proxmox-8-9-migration] guide. I will be doing an in place upgrade
-
 following the migration guide. If things don't go well we can always go scorched earth and fresh install.
 
 ## Step 2: Proxmox Post-Install
 
 There are a handful of things to do after install. Some are optional but consider all.
-
-### Post Install Script
-
-With your NUC connecected to the network still, access proxmox in your browser via your NUC's IP a
 
 ### Setup SSH
 
@@ -86,51 +73,50 @@ First validate that SSH is enabled from your Proxmox shell:
 3. Enable SSH as needed `sudo systemctl enable --now ssh`
 
 **Option 1**: Connect to the NUC from another computer via the CMD. You need the NUC's IP address which is hopefully reserved or static.
-
 You will also need root credentials unless you've configured other credentials.
-
 `ssh root@YOUR_PROXMOX_IP`
 
 **Option 2 (better)**: Setup an SSH key. From any PC you will use to SSH into the NUC, open the CMD and generate
-
 an SSH key `ssh-keygen -t ed25519 -C "your_email@example.com"`.
-
 Next add the key to the NUC directly or you can copy it and add it manually `ssh-copy-id -i ~/.ssh/id_rsa.pub root@YOUR_PROXMOX_IP`
-
 or `cat ~/.ssh/id_rsa.pub | clip`.
+Now on your PC, configure `~/.ssh/config` to use the record you just sent to the NUC:
 
-This is your first blog post. Edit or delete it, then start writing your own content in the `_posts/` directory.
-
-Posts are named using the format `YYYY-MM-DD-title.md` and automatically picked up by Jekyll.
-
-## Front matter
-
-Each post supports the following front matter fields:
-
-| Field       | Required | Description                    |
-| ----------- | -------- | ------------------------------ |
-| `layout`    | Yes      | Always `blog` for posts        |
-| `title`     | Yes      | Post title                     |
-| `date`      | Yes      | Publication date               |
-| `author`    | No       | Author name                    |
-| `read_time` | No       | Estimated read time in minutes |
-| `tags`      | No       | Array of tag strings           |
-| `image`     | No       | Path to hero image             |
-| `image_alt` | No       | Alt text for hero image        |
-
-## Writing content
-
-Use standard Markdown — headings, lists, code blocks, images, links — all styled
-through the `@tailwindcss/typography` plugin.
-
-```ruby
-# Code blocks are syntax-highlighted via Rouge
-def hello
-  puts "Hello, world!"
-end
+```
+Host beelink
+  HostName YOUR_PROXMOX_IP
+  User root
+  Port 22
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_rsa
 ```
 
-Happy writing!
+Finally, you can test with `ssh beelink`.
+
+### Post Install Scripts
+
+With your NUC connecected to the network still, access proxmox in your browser via your NUC's IP at port 8006. Open the shell
+and run the post-install script:
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)"`
+
+Next run the intell microcode script and ensure the system reboots:
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/microcode.sh)"`
+
+## Step 3: HAOS Install
+
+You could do this manually with a flashdrive but there is a community script which is probably way better anyways. In the proxmox
+shell run the following:
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/vm/haos-vm.sh)"`
+
+Choose advanced setup to set some specific configurations (you can always reconfigure these later too).
+
+Firstly, use the stable version of HAOS.
+
+Select 'write through' for more reliable writes to memory in case of power loss.
+
+Select 'host' for the CPU model - because it is important.
+
+All other options are pretty straight-forward and obvious. Startup could take several minutes.
 
 [derek-seaman-proxmox-guid]: https://www.derekseaman.com/2023/10/home-assistant-proxmox-ve-8-0-quick-start-guide-2.html
 [proxmox-forum]: https://forum.proxmox.com/

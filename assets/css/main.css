@@ -1,4 +1,4 @@
-/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.2.4 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -331,23 +331,11 @@
   .top-32 {
     top: calc(var(--spacing) * 32);
   }
-  .right-1\/2 {
-    right: calc(1 / 2 * 100%);
-  }
   .right-8 {
     right: calc(var(--spacing) * 8);
   }
   .bottom-8 {
     bottom: calc(var(--spacing) * 8);
-  }
-  .bottom-12 {
-    bottom: calc(var(--spacing) * 12);
-  }
-  .bottom-14 {
-    bottom: calc(var(--spacing) * 14);
-  }
-  .bottom-16 {
-    bottom: calc(var(--spacing) * 16);
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
@@ -1324,21 +1312,6 @@
   @media (width >= 40rem) {
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:right-4 {
-      right: calc(var(--spacing) * 4);
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:right-6 {
-      right: calc(var(--spacing) * 6);
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:bottom-14 {
-      bottom: calc(var(--spacing) * 14);
     }
   }
   @media (width >= 48rem) {

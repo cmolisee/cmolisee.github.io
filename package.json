@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "prepare": "husky",
     "watch:css": "postcss assets/_css/main.css -o assets/css/main.css --watch --trace-deprecation",
-    "watch:jekyll": "bundle exec jekyll serve --incremental",
+    "watch:jekyll": "bundle exec jekyll serve --livereload --incremental",
     "watch:ts": "esbuild assets/_ts/main.ts --bundle --outfile=assets/js/main.js --format=esm --target=es2020 --sourcemap --watch"
   },
   "lint-staged": {
@@ -73,5 +73,8 @@
     "stylelint-config-tailwindcss": "^1.0.1",
     "tailwindcss": "^4.2.2",
     "typescript-eslint": "^8.58.0"
+  },
+  "optionalDependencies": {
+    "@tailwindcss/oxide-darwin-arm64": "^4.2.4"
   }
 }
